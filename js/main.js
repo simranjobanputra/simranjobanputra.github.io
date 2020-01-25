@@ -6,10 +6,10 @@ AOS.init({
 jQuery(document).ready(function($){
   'use strict';
 
-  
+
   // Animsition
   $(".animsition").animsition();
-  
+
   // Scrollax
   $.Scrollax();
 
@@ -52,7 +52,7 @@ jQuery(document).ready(function($){
     }
   });
 
-  // Show menu 
+  // Show menu
   if ($(window).width() > 768 ) {
     $('body').removeClass('menu-open');
     $('.js-templateux-menu').css('display', 'block');
@@ -65,7 +65,7 @@ jQuery(document).ready(function($){
     if ($this.width() > 768 ) {
       $('body').removeClass('menu-open');
       $('.js-templateux-menu').css('display', 'block');
-      
+
     } else {
       if ($this.width() < 768 ) {
         $('.js-templateux-menu').css('display', 'none');
@@ -73,19 +73,19 @@ jQuery(document).ready(function($){
     }
   });
 
-  // Hamburger Button 
+  // Hamburger Button
   $('.js-toggle-menu').on('click', function(e){
   	e.preventDefault();
-  	
+
     var $this = $(this);
 
     if ($('body').hasClass('menu-open')) {
       $this.removeClass('is-active');
-      $('body').removeClass('menu-open');  
+      $('body').removeClass('menu-open');
       $('.js-templateux-menu li').removeClass('staggard');
     } else {
       $this.addClass('is-active');
-      $('body').addClass('menu-open');  
+      $('body').addClass('menu-open');
 
       $('.js-templateux-menu li').each(function(k){
         var $this = $(this);
@@ -103,3 +103,33 @@ jQuery(document).ready(function($){
   	}
   })
 });
+
+//carousel
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
