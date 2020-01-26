@@ -488,12 +488,12 @@ textarea.form-control { height: inherit; }
 
 #onlinefacts{
     position:relative;
-    margin-top:65px;
+    margin-top:50px;
 }
 
 #onlinefacts2{
     position:relative;
-    margin-top:40px;
+    margin-top:45px;
 }
 
 #shifting{
@@ -506,4 +506,14 @@ textarea.form-control { height: inherit; }
 #modeltothemiddle{
     position:relative;
     margin-left:150px;
+}
+
+#companalysis{
+    position:relative;
+    margin-top:105px;
+}
+
+#conceptmiranda{
+    position:relative;
+    margin-left:275px;
 }
