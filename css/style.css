@@ -513,7 +513,22 @@ textarea.form-control { height: inherit; }
     margin-top:105px;
 }
 
+#companalysis2{
+    position:relative;
+    margin-top:65px;
+}
+
 #conceptmiranda{
     position:relative;
     margin-left:275px;
+}
+
+#solution{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#video{
+    position:relative;
+    margin-top:225px;
 }
