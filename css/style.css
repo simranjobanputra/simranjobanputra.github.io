@@ -593,3 +593,8 @@ li a.fixed:hover:not(.active2) {
 .active2 {
   background-color: #4CAF50;
 }
+
+#centering{
+    position:relative;
+    margin-left:250px;
+}
