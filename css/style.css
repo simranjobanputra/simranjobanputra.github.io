@@ -537,3 +537,23 @@ textarea.form-control { height: inherit; }
     position:relative;
     margin-top:45px;
 }
+
+#videos{
+    position:relative;
+    margin-left:350px;
+}
+
+#pushdown{
+    position:relative;
+    margin-top:60px;
+}
+
+#pushdown2{
+    position:relative;
+    margin-top:80px;
+}
+
+#pushdown3{
+    position:relative;
+    margin-top:100px;
+}

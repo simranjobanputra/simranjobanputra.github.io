@@ -60,7 +60,6 @@
         <div class="row justify-content-center">
           <div class="col-md-14">
             <p id="rowoverview2">01 Overview</p>
-            <p id="subheader">Quick Summary</p>
             <div class="row work-detail">
               <div class="col-md-3">
                 <span class=caption>Team</span>
@@ -80,168 +79,127 @@
               </div>
               <br></br>
               <div class="col-md-8">
-                <span class=caption id="rowoverview">Internship Overview</span>
-                <p class="description1">This summer, I had the incredible opportunity to be a <b>UX Designer for the SPIFe (Scheduling and Planning System for Exploration) team at the NASA AMES Research Center</b>. The team had a work process similar to that of a startup embedded within a larger organization. I worked on <b>two main projects: NASA HUNCH and Playbook.</b> Over the summer, I grew my technical design knowledge and was able to learn how to work with software developers in an agile development environment. I'm going to take a deep dive into Playbook and summarize my work with NASA HUNCH.</p>
-              </div>
-              <div class="col-md-8">
                 <span class=caption id="rowoverview">Project Ask</span>
-                <p class="description1">Create Hotkeys and Shortcuts for the most implemented actions in the Playbook, evaluate and redesign the system structure of the Playbook iPad application.</p>
+                <p class="description1">Create <b>hotkeys and shortcuts</b> for the most implemented actions in the Playbook, <b>evaluate and redesign the system structure</b> of the Playbook iPad application.</p>
               </div>
               <div class="col-md-8">
                 <span class=caption id="rowoverview">Project Overview</span>
-                <p class="description1">Playbook is an intuitive software designed to help astronauts <b>edit certain adjustable activities</b>in space or on other analog missions, <b>without needing to rely on mission control</b> everytime there is a small change. This has a useful application in missions where there is a <b>time lag</b> between mission control (Earth) and the astronauts who may be on the Moon or Mars. Currently, this software is used on analog missions(field tests in locations that have physical similarities to extreme space environments) such as NASA NEEMO, but the hope is our software can be used for Mars 2020 and the like!</p>
+                <p class="description1">Playbook is an intuitive software designed to help astronauts <b>edit certain adjustable activities</b> in space or on other analog missions, <b>without needing to rely on mission control</b> everytime there is a small change. This has a useful application in missions where there is a <b>time lag</b>.</p>
+              </div>
+              <div class="col-md-8">
+                <span class=caption id="rowoverview">Impact</span>
+                <p class="description1">The <b>system design updates and UI changes</b> I made will be implemented for the next <a href="https://www.nasa.gov/mission_pages/NEEMO/index.html"><font color="#DAA520">NASA NEEMO</font></a> analog mission in Summer 2020. The hope is the software can ultimately be used for the <b>Mars 2020</b> mission! </p>
+              </div>
+              <div class="col-md-12">
+                <br></br>
+                <hr id="pushdown">
               </div>
             </div>
           <!-- </div> -->
           <!-- <img src="images/CJ/breakline.jpg" id="break" width=1268> -->
             <div class="row mb-5">
+              <div class="col-md-6">
+                <p id="rowoverview2">02 Solution</p>
+                <p class="description1">My original assignment for this project was mostly UI changes (hotkeys, shortcuts). Pretty quickly, I noticed that the Playbook system wasn't as efficient as it could be. My final concept consisted of both <b>UI changes but also cleaning up the overall system design.</b></p>
+              </div>
               <div class="col-md-12">
-                <p id="rowoverview2">02 Initial Research</p>
-                 <p class="description1">At the beginning of this project, I read a lot of research publications to try to understand the basic use case of Playbook. Here is my visual interpretation of Playbook: an iPad application used to create <b>convenience</b> and <b>independence</b> in editing mission activities.</p>
+                <p class="text-center mb-4" id="uservisual"><img src="images/NASA/nasavisual7.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
+                <p class="description1" id="userflow2">The proposed user flow <b>cuts the number of clicks by 44%</b>! Although it's only a few clicks change per action, it easily adds up as crew members are constantly changing their schedules throughout spaceflight. The key changes were <b>repurposing the activity tray</b> as a space where actions can also occur to activities and not just as an informational space. This eliminated the need for pop-ups and the like. Additionally, <b>cutting the preferences</b> to the bare minimum really helped in saving clicks (for example having an entry rather than click through a long list of numbers).</p>
+              </div>
+              <div class="col-md-6">
+                <br>
+                  <p id="subheader">Hotkey/Shortcut Videos</p>
+                  <p class="description1">There are common shortcuts astronauts use on board a mission. Our goal was to <b>reduce the time</b> required go through these actions through <b>buttons</b> and more <b>efficient action flows.</b></p>
+              </div>
+              <div class="col-md-6" id="pushdown2">
+                  <p class="description1" >Make Copies</p>
+                  <iframe width="500" height="255" src="https://www.youtube.com/embed/l6aGsVMrcuA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <br>
+                  <p class="description1" >Recurrence</p>
+                  <iframe width="500" height="255" src="https://www.youtube.com/embed/KMH6lvJBGO0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <br>
+                  <p class="description1" >Slice</p>
+                  <iframe width="500" height="255" src="https://www.youtube.com/embed/OVC3FqVcF7c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <br>
+              <div class="col-md-12">
+                <hr id="pushdown">
+                <br>
+                <p id="rowoverview2">03 Approach</p>
+                 <p id="subheader">Initial Research</p>
+                 <p class="description1">A visual interpretation of Playbook: an iPad application used to create <b>convenience</b> and <b>independence</b> in editing mission activities.</p>
                 <p class="text-center mb-4" id="probvisnasa"><img src="images/NASA/problemvisual2.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
               </div>
               <br></br>
-              <div class="col-md-12">
+              <div class="col-md-6">
                   <br></br>
-                  <p class="description1">My research began with learning about the <b>use cases of Playbook, the current features, and the way the current interface works.</b> I asked my teammates several questions and asked them to demo particular actions for me as well. My team also gave me access to a tester site so I could play around with features and user flows on my own, which was really crucial in problem discovery.</p>
-                  <p class="text-center mb-4" id="probvisnasa"><img src="images/NASA/nasavisual3.png" alt="Image placeholder" class="img-fluid" width="300%"></p>
+                  <p class="description1">My research began with learning about the <b>use cases of Playbook, the current features, and the way the current interface works.</b> I played around with the tester site for problem discovery.</p>
+              </div>
+              <div class="col-md-12">
+                  <br>
+                  <p class="text-center mb-4" id="probvisnasa"><img src="images/NASA/nasavisual4.png" alt="Image placeholder" class="img-fluid" width="400%"></p>
               </div>
               <br></br>
               <div class="col-md-12">
                 <br></br>
-                <p class="text-center mb-4" id="probvisnasa"><img src="images/NASA/nasavisual4.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
+                 <p class="text-center mb-4" id="probvisnasa"><img src="images/NASA/nasavisual3.png" alt="Image placeholder" class="img-fluid" width="400%"></p>
               </div>
               <br></br>
               <div class="col-md-6">
                 <br></br>
-                <p id="rowoverview2">03 System Design</p>
+                <p id="subheader"><b>System Design</b></p>
                 <p class="description1">As I was playing around with the tester site, I noticed that it took a <b>considerable number of clicks</b> to commit to a certain action. I noticed this had a lot to do with the design of the Playbook system, specifically having an <b>action tray</b> - a tray that pops out when you need to make edits to the schedule. Before going into my main tasking, I decided to see if we could <b>clean up the user flow</b> of editing something. </p>
               </div>
               <div class="col-md-6">
-                <p class="text-center mb-4" id="activitytray"><img src="images/NASA/nasavisual5.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
+                <p class="text-center mb-4" id="pushdown3"><img src="images/NASA/nasavisual5.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
               </div>
               <div class="col-md-12">
-                <p class="text-center mb-4" id="userflow1"><img src="images/NASA/nasavisual6.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
+                <p class="text-center mb-4" id="userflow1"><img src="images/NASA/nasavisual6.png" alt="Image placeholder" class="img-fluid" height="400%"width="300%"></p>
               </div>
               <br></br>
               <div class="col-md-6">
                 <br></br>
-                <p class="description1" id="userflow2">The proposed user flow cuts the number of clicks by <b>44%</b>! Although it's only a few clicks change per action, it easily adds up as crewmembers are constantly changing their schedule throughout spaceflight. The key changes were <b>repurposing the activity tray</b> as a space where actions can also occur to activities and not just as an informational space. This eliminated the need for pop-ups and the like. Additionally, <b>cutting the preferences</b> to the bare minimum really helped in saving clicks (for example having an entry rather than click through a long list of numbers).</p>
-              </div>
-              <div class="col-md-6">
-                <p class="text-center mb-4" id="uservisual"><img src="images/NASA/nasavisual7.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
-              </div>
-              <br></br>
-              <div class="col-md-6">
-                <br></br>
-                <p id="rowoverview2">04 Shortcut Flows</p>
+                <p id="subheader">Shortcut Flows</p>
                   <p class="description1">There were <b>three shortcut flows</b> that I worked on during the internship: <b>Copy, Distribute</b> (later renamed Recurrence), and <b>Slice.</b> I also worked on making multiselect easier (changing multiple activities), which you can view in my Internship Final Presentation linked below.</p>
               </div>
-              <div class="col-md-6"></div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <p id="subheadervideo">Copy</p>
-                  <p class="text-center mb-4" id="uservisual"><img src="images/NASA/makecopies.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
+                  <p class="text-center mb-4" id="uservisual"><img src="images/NASA/makecopies.png" alt="Image placeholder" class="img-fluid" width="60%"></p>
               </div>
-              <div class="col-md-6" id="video">
-                  <iframe width="500" height="255" src="https://www.youtube.com/embed/l6aGsVMrcuA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="col-md-12">
+                  <p id="subheadervideo">Recurrence</p>
+                  <p class="text-center mb-4" id="uservisual"><img src="images/NASA/recurrence.png" alt="Image placeholder" class="img-fluid" width="60%"></p>
               </div>
-              <div class="col-md-6">
-                <p id="subheadervideo">Recurrence</p>
-                  <p class="text-center mb-4" id="uservisual"><img src="images/NASA/recurrence.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
-              </div>
-              <div class="col-md-6" id="video">
-                  <iframe width="500" height="255" src="https://www.youtube.com/embed/KMH6lvJBGO0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <p id="subheadervideo">Slice</p>
-                  <p class="text-center mb-4" id="uservisual"><img src="images/NASA/slice.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
-              </div>
-              <div class="col-md-6" id="video">
-                  <iframe width="500" height="255" src="https://www.youtube.com/embed/OVC3FqVcF7c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <p class="text-center mb-4" id="uservisual"><img src="images/NASA/slice.png" alt="Image placeholder" class="img-fluid" width="60%"></p>
               </div>
               <div class="col-md-6">
-                <br></br>
-                <p id="rowoverview2">05 NASA HUNCH</p>
-                  <p id="subheader">Overview</p>
-                    <p class="description1">NASA HUNCH is a website that aims to empower and inspire high school students and give them the opportunity to launch their careers through participation in the design and fabrication of real world valued products for NASA. The goal of the site is to be a platform to <b>raise awareness of the International Space Station, current HUNCH projects, and to enable students to showcase their work and connect with NASA social media sites.</b>I was tasked with revamping and creating new webpages for the site. Specifically, I built a <b>new social media page</b>that allowed easy access to NASA HUNCH's social media channels and also built a <b>blog page where schools</b>could showcase the work of their students and be inspired by the work of other educator s across the country. I was able to learn a lot about <b>APIs and Wordpress (Elementor) plug-ins</b>through this project, as we were trying to create a template that could be edited by high schools <b>without coding.</b></p>
-              </div>
-              <div class="col-md-6">
-                <p class="text-center mb-4" id="nasacover"><img src="images/NASA/hunchcover.png" alt="Image placeholder" class="img-fluid" width="200%"></p>
-              </div>
-              <div class="col-md-6">
-                  <br></br>
-                  <p id="subheader">Initial Browsing</p>
-                  <p class="description1">I initially spent some time scouring through the current HUNCH site, trying to understand what HUNCH was all about and how they intended to get their message across through their website. From reading each page, looking at the layout and tabs, and identifying the type of information available on the site, I found there to be a couple <b>key goals</b> for the HUNCH site: <br></br>
-
-                      <b>Key Goals</b><br>
-                      01 Empower high school students to get involved regardless of technical level<br>
-                      02 Build a larger network of involvement with NASA projects in the public <br>
-                      03 Find top talent and be able to connect with them for future work <br>
-                      04 Push social media and awareness of NASA HUNCH<br></br>
-
-
-                  Additionally, there were several <b>problems</b> that came up in my research.<br></br>
-
-                  <b>General Issues</b><br>
-                  01 No about page explaining the background/goals of HUNCH<br>
-                  02 Schools do not currently have a way to share their process with other schools<br></br>
-
-                  <b>Standardization Issues</b><br>
-                  01 Differing sizing on each page and different layouts<br>
-                  02 Some pages are extremely fleshed out and others barely have any content<br>
-                  03 Issues with spacing and a “pixel perfect” look<br>
-                  04 Portraying a common message through the site<br></br>
-
-                  I sought to work on some of these issues through the two pages I was assigned.
-                </p>
-              </div>
-              <div class="col-md-6"></div>
-              <div class="col-md-6">
-                <p id="subheader">Social Media Page</p>
-                    <p class="caption">Ideation</p>
-                      <p class="description1">This is what features the original page had. </p>
-                      <img src="images/NASA/originalpic.png" alt="Image placeholder" class="img-fluid" width="100%"><br><br>
-                      <p class="description1">I completely revamped the concept behind the social media page. Instead of making a separate 'history' or 'about us' page, I decided to combine that idea with the social media page, coming up with the idea of a “connect” page. The goal of the <b>Connect page</b> would be to allow users to:<br><br>
-                      <b>“Connect” with NASA HUNCH’s goal<br>
-                      “Connect” with them physically on social media sites</b></p>
-                      <p class="caption">Iteration and Evaluation</p>
-                      <img src="images/NASA/critone.png" alt="Chania" width="100%">
-                      <img src="images/NASA/crtitwo.png" alt="Chicago" width="100%">
-                      <img src="images/NASA/critthree.png" alt="New York" width="100%">
-
-
-
-  <!-- Left and right controls -->
-
-              </div>
-              <div class="col-md-6">
-                  <p id="subheader">Blog Page</p>
-                    <p class="description1">Since there was no pre-existing page, I had to think a lot about context - with respect to the people who would be viewing the projects. There would be 1) unfamiliar users who have no knowledge of the projects and 2) there would also be the schools viewing their own projects that they would be really familiar with. It was difficult to strike a balance between giving enough information and having too much.</p>
-                    <p class="caption">Ideation</p>
-                      <p class="description1">I presented several layouts for the page and the consensus was that the layouts felt cluttered and it may not be necessary to embed tweets for every school - they would only have so many for such a specific project.</p>
-                      <img src="images/NASA/socialcritone.png" alt="Image placeholder" class="img-fluid" width="100%"><br><br>
-                    <p class="caption">Iteration and Evaluation</p>
-                      <p class="description1">
-                      I presented several layouts for the page and the consensus was that the layouts felt cluttered and it may not be necessary to embed tweets for every school - they would only have so many for such a specific project. For the second iteration, I I eliminated the tweets and provided two separate formats for if a page has videos or if it doesn’t. I also wanted to come up with a way to focus on specific photos in the archive to reduce the overwhelming nature of the page.</p>
-                      <img src="images/NASA/socialcrittwo.png" alt="Image placeholder" class="img-fluid" width="100%"><br><br>
-              </div>
-              <div class="col-md-12">
-                  <p id="subheader">Final Prototypes</p>
-                  <img src="images/NASA/finalprototype.png" alt="Image placeholder" class="img-fluid" width="100%"><br><br>
+                <br>
+                <p id="subheader">Poster Presentation</p>
+                <p class="description1">These are posters we used at the NASA Intern Research Symposium - NASA HUNCH was my other project during the summer (website redesign). Feel free to checking out my <a href="https://medium.com/@SimranJobanputra"><font color="#DAA520">Medium</font></a> for more information!</p>
+                <embed src="images/NASA/playbook.pdf" width="1200" height="600" type="application/pdf">
               </div>
               <div class="col-md-12">
                 <br></br>
-                <p id="rowoverview2">06 Future Steps + Reflection</p>
+                <p id="rowoverview2">04 Future Steps + Reflection</p>
                 <p class="description1">Currently, the work is being implemented, so the future steps would be to ensure that everything is deployed successfully. The site is currently being worked on and the changes on Playbook are going to be implemented for the next NEEMO mission. This was my first UX internship and the first time I actually implemented my designs beyond the classroom. Therefore, there was a huge learning curve for me in terms of being able to work directly with software engineers on implementation in an Agile environment.  What I realized is that things often have to be spelled out or extremely pixel perfect and specified for a software engineer to carry out a design exactly as it is meant to be. Outside of improving my design skills, working with JIRA and understanding how to document interactions and specifications were some of the most valuable things I learned during this internship. </p>
+
+                This summer, I had the incredible opportunity to be a <b>UX Designer for the SPIFe (Scheduling and Planning System for Exploration) team at the NASA AMES Research Center</b>. I'm going to take a deep dive into one of my projects: <b>Playbook</b>. Feel free to peruse my  account for more information on my Internship!
+
+                The team had a work process similar to that of a startup embedded within a larger organization. Over the summer, I grew my technical design knowledge and was able to learn how to work with software developers in an agile development environment.
               </div>
 
               <div class="col-md-12">
                 <br></br>
-                <p id="rowoverview2">07 Links</p>
-                -link to NASA HUNCH
-                -link to SPIFE team
+                <p id="rowoverview2">05 Links</p>
+                <p class="description1"><a href="">Final Internship Deck</a></p>
+
+
                 -final internship deck
               </div>
+              <div class="col-md-12">
+                <p id="rowoverview2">Pictures from the Summer</p>
 
 
 
