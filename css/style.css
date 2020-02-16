@@ -562,3 +562,34 @@ textarea.form-control { height: inherit; }
     position:relative;
     margin-right:500px;
 }
+
+ul.fixed {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #00000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+li.fixed{
+  float: left;
+}
+
+li a.fixed{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a.fixed:hover:not(.active2) {
+  background-color: #111;
+}
+
+.active2 {
+  background-color: #4CAF50;
+}
