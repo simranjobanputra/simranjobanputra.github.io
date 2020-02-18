@@ -598,3 +598,14 @@ li a.fixed:hover:not(.active2) {
     position:relative;
     margin-left:250px;
 }
+
+#moveit{
+    position:relative;
+    margin-top:75px;
+}
+
+#shiftit{
+    position:relative;
+    margin-top:90px;
+    margin-right:300px;
+}
