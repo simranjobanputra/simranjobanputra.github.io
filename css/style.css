@@ -469,8 +469,19 @@ textarea.form-control { height: inherit; }
 
 #numbers{
     position:relative;
-    margin-left: 90px;
+    margin-left: 100px;
 }
+
+#numbers2{
+    position:relative;
+    margin-left: 150px;
+}
+
+#numbers3{
+    position:relative;
+    margin-left: 180px;
+}
+
 
 #shift{
     position:relative;
@@ -609,3 +620,9 @@ li a.fixed:hover:not(.active2) {
     margin-top:90px;
     margin-right:300px;
 }
+
+#moveit2{
+    position:relative;
+    margin-top:60px;
+}
+
