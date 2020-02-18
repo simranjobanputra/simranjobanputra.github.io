@@ -479,13 +479,13 @@ textarea.form-control { height: inherit; }
 
 #numbers3{
     position:relative;
-    margin-left: 180px;
+    margin-left: 250px;
 }
 
 
 #shift{
     position:relative;
-    margin-right:20px;
+    margin-left:60px;
 }
 
 #push{
@@ -617,13 +617,15 @@ li a.fixed:hover:not(.active2) {
 
 #centering3{
     position:relative;
-    margin-left:180px;
+    margin-left:200px;
 }
 
 #centering4{
     position:relative;
     margin-left:55px;
 }
+
+
 
 #moveit{
     position:relative;
