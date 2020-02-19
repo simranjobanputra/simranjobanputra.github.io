@@ -482,6 +482,10 @@ textarea.form-control { height: inherit; }
     margin-left: 250px;
 }
 
+#numbers4{
+    position:relative;
+    margin-left: 180px;
+}
 
 #shift{
     position:relative;
