@@ -80,7 +80,7 @@
               <br></br>
               <div class="col-md-8">
                 <span class=caption id="rowoverview">Project Ask</span>
-                <p class="description1">Create an interactive tactile tile that can be used to improve the 'last meter problem' that is experienced by the blind or visually impaired. The hope is that the tactile tiles can be sold in a kit and used as a low-cost method for solving this problem.</p>
+                <p class="description1">Create an interactive tactile tile that can be used to <b>improve the 'last meter problem'</b> that is experienced by the <b>blind or visually impaired</b>. The hope is that the tactile tiles can be sold in a kit and used as a low-cost method for solving this problem.</p>
               </div>
               <div class="col-md-8">
                 <span class=caption id="rowoverview">Project Overview</span>
@@ -99,24 +99,26 @@
             <div class="row mb-5">
               <div class="col-md-12">
                 <p id="rowoverview2">02 Current Stage</p>
-                <p class="description1">Our approach to solving this problem is by using tactile surfaces or <b>textured ground surfaces</b> that one can sense through touch or by walking on them, perhaps in combination with some bluetooth/audio tool. Currently, we have built a basic working prototype and are looking to test it with blind users through 1) an informal Twitter survey and a 2) formal in-person codesign session.</p>
-
-                 <div class="col-md-12">
-                <p id="rowoverview2">04 User Research</p>
+                <p class="description1">Our approach to solving this problem is by using tactile surfaces or <b>textured ground surfaces that one can sense through touch or by walking on them</b>, perhaps in combination with some bluetooth/audio tool.</p>
+                <img src="images/tiles/funny.png" alt="Image placeholder" class="img-fluid" width="100%">
+              </div>
+              <div class="col-md-12">
+                <br></div>
+                <p id="subheader"><b>user research</b></p>
                 <p class="description1">
-                  With a working prototype, we resumed our iterative research process to get opinions from visually impaired users. Our plan was to first send out an <b>initial survey on Twitter</b> and then find users that we surveyed who may be interested in an in-person interview and prototype testing session. Currently we are in the process of getting IRB approval for the survey and hope to get the survey out in early January.
-                </p>
+                  Currently, we have built a basic working prototype and are looking to test it with blind users through <b>1) an informal Twitter survey</b> and a 2) <b>formal codesign session. The survey has received IRB approval and is now in the process of being sent out on Twitter.</b></p>
                 <p class="text-center mb-4" id="questions"><img src="images/tiles/questions.png" alt="Image placeholder" class="img-fluid" width="100%"></p>
              </div>
 
                 <p id="rowoverview2">03 Approach</p>
+                 <p id="subheader"><b>problem space exploration</b></p>
                  <p class="description1">Going into this project, I had limited knowledge of visually impaired or blind users. I tried to learn about common navigation problems, tactile pavers, and current technology that exists for the visually impaired. The hope was to be able to come up with some guiding questions and takeaways.</p>
                 <p class="text-center mb-4" id="questions"><img src="images/tiles/keyquestions.png" alt="Image placeholder" class="img-fluid" width="40%"></p>
               </div>
               <br></br>
               <div class="col-md-12">
                 <br></br>
-                <p id="rowoverview2">03 Prototyping</p>
+                <p id="subheader"><b>prototyping</b></p>
                   <p class="description1">Once we had a foundation, we started the 3D Fabrication process of building tiles. For the initial prototype, we wanted to build a generic tile that could be used to sense any kind of pressure. The goal was to 1) have something we could <b>use in future interviews with users to test our hypotheses</b> and 2) <b>integrate with some audio or haptic sensing information to provide feedback</b> to a visually impaired user. The fabrication process had a huge learning curve, particularly with machining and understanding what were the best materials to use.</p>
               </div>
               <div class="col-md-12">
@@ -124,21 +126,21 @@
               </div>
               <div class="col-md-6">
                   <br>
-                  <p id="subheader">Tile Molds</p>
+                  <p id="subheader"><b>tile molds</b></p>
                   <p class="description1">Creating a mold that we could use for prototyping was the first step. We originally tried to 3D print tiles using a makerbot, but due to the excessive time required, we switched over to a <b>CNC for tile production.</b> These tile molds were used to later mold the plastic and velostat for our initial prototype. </p>
               </div>
               <div class="col-md-6">
                   <p class="text-center mb-4" id="molds"><img src="images/tiles/molds.png" alt="Image placeholder" class="img-fluid" width="100%"></p>
               </div>
               <div class="col-md-6">
-                <p id="subheader">Materials Experimentation</p>
+                <p id="subheader"><b>materials experimentation</b></p>
                   <p class="description1"> To mock up the initial tile, we wanted something that could take pressure and that someone could step on. Thus, we used a combination of <b>plastic and velostat - the plastic to withstand someone stepping on it and the velostat to be embedded underneath to sense pressure and eventually be paired with Arduino for data collection.</b> However, the process for finding the right plastic was tough - we starting with Polycarbonates and eventually invested in ABS plastic for the thermoforming. During thermoforming, or molding the plastic into the shape of the tile, the <b>Polycarbonate melted on the corners and had air bubbles under temperatures higher than 375 degrees F.</b> Additionally, we found out that our <b>heat source must be underneath</b> the plastic instead of on top, so that aided us in finding a solution.  We experimented with different materials,  melting points, and different heat sources to find the right combination of materials.
               </div>
               <p class="text-center mb-4" id="molds"><img src="images/tiles/melt.png" alt="Image placeholder" class="img-fluid" width="100%"></p>
 
               <div class="col-md-6">
                 <br>
-                <p id="subheader">Vacuum Forming</p>
+                <p id="subheader"><b>vacuum forming</b></p>
                 <p class="description1">The material experimentation happened in sync with multiple vacuum forming attempts. <b>We originally used a traditional vacuum former in hopes that we could find a more low-cost alternative.</b> However, after several attempts we had to move on to a more advanced vacuum forming machine. Since this project is still ongoing, when we produce kits for people, the hope is that we can still find a different low-cost alternative as needed.</p>
               </div>
               <div class="col-md-6">
@@ -146,7 +148,7 @@
               </div>
 
               <div class="col-md-12">
-                <p id="subheader">Arduino</p>
+                <p id="subheader"><b>arduino</b></p>
                 <p class="description1">Once we had a prototype with all the parts, we proceeded to integrate Arduino. The <b>purpose of the Arduino is to be able sense pressure - the potential pressure that would come from stepping on a tile or using a cane to press down on a tile.</b> We wanted to see what sort of data we could collect to better understand what sort of feedback we could give to someone who is visually impaired. We used copper tape to ensure conductivity between the two pieces. The next step is to integrate audio with the pressure sensing. You can see videos of the two separate parts to the right!
                 </p>
               </div>
