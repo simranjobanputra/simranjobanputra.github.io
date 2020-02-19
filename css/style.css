@@ -647,6 +647,11 @@ li a.fixed:hover:not(.active2) {
     margin-top:40px;
 }
 
+#centering7{
+    position:relative;
+    margin-left:250
+}
+
 
 #moveit{
     position:relative;
