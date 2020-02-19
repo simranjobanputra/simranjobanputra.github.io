@@ -428,7 +428,7 @@ textarea.form-control { height: inherit; }
 
 #video{
     position:relative;
-    margin-top:50px;
+    margin-top:10px;
 }
 
 #nasacover{
@@ -509,6 +509,7 @@ textarea.form-control { height: inherit; }
 #onlinefacts3{
     position:relative;
     margin-top:85px;
+    margin-left:180px;
 }
 
 #onlinefacts2{
@@ -635,6 +636,11 @@ li a.fixed:hover:not(.active2) {
     margin-left:55px;
 }
 
+#centering5{
+    position:relative;
+    margin-left:260
+}
+
 
 #moveit{
     position:relative;
@@ -746,4 +752,9 @@ li a.fixed:hover:not(.active2) {
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+#baby{
+    position:relative;
+    margin-top:15px;
 }
