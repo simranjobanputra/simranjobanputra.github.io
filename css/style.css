@@ -639,7 +639,7 @@ li a.fixed:hover:not(.active2) {
 
 #centering5{
     position:relative;
-    margin-left:260
+    margin-left:260px;
 }
 
 #centering6{
@@ -650,8 +650,14 @@ li a.fixed:hover:not(.active2) {
 
 #centering7{
     position:relative;
-    margin-left:250
+    margin-left:250px;
 }
+
+#centering8{
+    position:relative;
+    margin-left:350px;
+}
+
 
 
 #moveit{
