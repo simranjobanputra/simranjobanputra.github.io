@@ -465,6 +465,7 @@ textarea.form-control { height: inherit; }
 #shop{
     position:relative;
     margin-top:25px;
+    margin-left:220px;
 }
 
 #numbers{
