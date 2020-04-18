@@ -1450,7 +1450,7 @@ Responsive
 
 #subheadercolors{
 	position:relative;
-	margin-left:200px;
+	margin-left:340px;
 	margin-top:15px;
 	margin-bottom:10px;
 	max-width:100%;
@@ -1468,10 +1468,18 @@ Responsive
 	height:auto;
 }
 
+#sectionbook{
+	position:relative;
+	margin-left:210px;
+	margin-bottom:10px;
+	max-width:100%;
+	height:auto;
+}
+
 
 #sectioncolors{
 	position:relative;
-	margin-left:255px;
+	margin-left:295px;
 	margin-bottom:10px;
 	max-width:100%;
 	height:auto;
@@ -1480,6 +1488,14 @@ Responsive
 #sectiondarpa{
 	position:relative;
 	margin-left:105px;
+	margin-bottom:10px;
+	max-width:100%;
+	height:auto;
+}
+
+#sectiondigi{
+	position:relative;
+	margin-left:240px;
 	margin-bottom:10px;
 	max-width:100%;
 	height:auto;
