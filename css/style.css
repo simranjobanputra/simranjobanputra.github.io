@@ -1439,6 +1439,33 @@ Responsive
 	height:auto;
 }
 
+#subheadertiles{
+	position:relative;
+	margin-left:450px;
+	margin-top:15px;
+	margin-bottom:10px;
+	max-width:100%;
+	height:auto;
+}
+
+
+
+#sectiontiles{
+	position:relative;
+	margin-left:175px;
+	margin-bottom:10px;
+	max-width:100%;
+	height:auto;
+}
+
+#sectiondarpa{
+	position:relative;
+	margin-left:105px;
+	margin-bottom:10px;
+	max-width:100%;
+	height:auto;
+}
+
 #move{
 	position:relative;
 	margin-top:60px;
@@ -1741,6 +1768,57 @@ Responsive
     object-fit: cover;
 }
 
+#cover-img {
+    max-height: 1200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#cover-img img {
+    width: 80%;
+    object-fit: cover;
+    position:relative;
+    margin-left:100px;
+
+}
+
+#harp-img {
+    max-height: 1200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#harp-img img {
+    width: 85%;
+    object-fit: cover;
+    position:relative;
+    margin-left:80px;
+
+}
+
+#subheaderharp{
+	position:relative;
+	margin-left:400px;
+	margin-top:15px;
+	margin-bottom:10px;
+	max-width:100%;
+	height:auto;
+}
+
+#subheaderdarpa{
+	position:relative;
+	margin-left:365px;
+	margin-top:15px;
+	margin-bottom:10px;
+	max-width:100%;
+	height:auto;
+}
+
+
+/*#cover-img{
+	position:relative;
+	margin-left:10px;
+}*/
 
 /*#facts {
     max-height: 1400px;
@@ -1819,5 +1897,6 @@ Responsive
 .templateux-hero { background-size: cover; background-repeat: no-repeat; background-position: center center; position: relative; overflow: hidden; }
 
 .container-fluid { padding-left: 50px; padding-right: 50px; max-width: 1600px; }
+.container2-fluid { padding-left: 50px; padding-right: 50px; max-width: 1000px; }
 
 /*from other css file
