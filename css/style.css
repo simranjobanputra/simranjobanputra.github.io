@@ -1448,11 +1448,30 @@ Responsive
 	height:auto;
 }
 
+#subheadercolors{
+	position:relative;
+	margin-left:200px;
+	margin-top:15px;
+	margin-bottom:10px;
+	max-width:100%;
+	height:auto;
+}
+
+
 
 
 #sectiontiles{
 	position:relative;
 	margin-left:175px;
+	margin-bottom:10px;
+	max-width:100%;
+	height:auto;
+}
+
+
+#sectioncolors{
+	position:relative;
+	margin-left:255px;
 	margin-bottom:10px;
 	max-width:100%;
 	height:auto;
