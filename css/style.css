@@ -1930,9 +1930,62 @@ Responsive
    margin-left:200px;
 }
 
-.templateux-hero { background-size: cover; background-repeat: no-repeat; background-position: center center; position: relative; overflow: hidden; }
+/*.templateux-hero { background-size: cover; background-repeat: no-repeat; background-position: center center; position: relative; overflow: hidden; }*/
 
 .container-fluid { padding-left: 50px; padding-right: 50px; max-width: 1600px; }
 .container2-fluid { padding-left: 50px; padding-right: 50px; max-width: 1000px; }
+
+
+/* The sidebar menu */
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 160px; /* Set the width of the sidebar */
+  position:fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 0; /* Stay on top */
+  top: 70px; /* Stay at the top */
+  left: 0;
+  background-color: #0000; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+#cj-img {
+	position:relative;
+    max-height:500px;
+    width: 100%;
+    overflow: hidden;
+    z-index:10;
+}
+#cj-img img {
+    width: 100%;
+    object-fit:fill;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 40px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #DDA520;
+}
+
+/* Style page content */
+.main {
+  margin-top:20px;
+  margin-left: 200px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 
 /*from other css file
