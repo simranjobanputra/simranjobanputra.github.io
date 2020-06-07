@@ -1704,6 +1704,18 @@ Responsive
     object-fit: cover;
 }
 
+
+#solution-img {
+    max-height: 1000px;
+    width: 100%;
+    overflow: hidden;
+}
+#solution-img img {
+    width: 90%;
+    object-fit: cover;
+}
+
+
 #lemon-img {
     max-height: 900px;
     width: 100%;
