@@ -1704,16 +1704,19 @@ Responsive
     object-fit: cover;
 }
 
-
-#solution-img {
-    max-height: 1000px;
+#flow-img {
+    max-height: 2000px;
     width: 100%;
     overflow: hidden;
+    margin-left:50px;
+    margin-top:50px;
 }
-#solution-img img {
+#flow-img img {
     width: 90%;
     object-fit: cover;
 }
+
+
 
 
 #lemon-img {
