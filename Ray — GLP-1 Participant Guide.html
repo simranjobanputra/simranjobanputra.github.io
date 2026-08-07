@@ -157,6 +157,64 @@
 
         .link-arrow { color: var(--subtext); font-size: 16px; }
 
+        /* ── Info cards ── */
+        .info-cards { display: flex; flex-direction: column; gap: 12px; }
+
+        .info-card {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .info-card-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: var(--accent-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .info-card-title {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text);
+        }
+
+        .info-card-body {
+            font-size: 14px;
+            color: var(--subtext-2);
+            line-height: 1.65;
+        }
+
+        .info-card-body strong { color: var(--text); font-weight: 600; }
+
+        .info-card-body .note {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: var(--surface-2);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            color: var(--subtext-2);
+            line-height: 1.6;
+        }
+
+        .info-card-body .note strong { color: var(--text); }
+
         /* ── Section ── */
         .section { margin-top: 48px; }
 
@@ -417,7 +475,7 @@
         <!-- Quick Links -->
         <div class="section-eyebrow">Quick links</div>
         <div class="links-grid">
-            <a href="file:///Users/simranjobanputra/Desktop/ray-glp1-guidelines.html#" class="link-card" onclick="return false">
+            <a href="https://rayfit.typeform.com/to/tcLe5Mnv" class="link-card" target="_blank">
                 <div class="link-icon">⚡</div>
                 <div class="link-text">
                     <span class="link-label">Pre-Workout Check-in</span>
@@ -425,15 +483,15 @@
                 </div>
                 <span class="link-arrow">→</span>
             </a>
-            <a href="file:///Users/simranjobanputra/Desktop/ray-glp1-guidelines.html#" class="link-card" onclick="return false">
+            <a href="https://rayfit.typeform.com/to/QCDDWgKd" class="link-card" target="_blank">
                 <div class="link-icon">📋</div>
                 <div class="link-text">
                     <span class="link-label">Weekly Check-in</span>
-                    <span class="link-desc">Complete once a week</span>
+                    <span class="link-desc">Due by Monday at 10am EST</span>
                 </div>
                 <span class="link-arrow">→</span>
             </a>
-            <a href="file:///Users/simranjobanputra/Desktop/ray-glp1-guidelines.html#" class="link-card wa full" onclick="return false">
+            <a href="https://chat.whatsapp.com/Jikm9pzi8NBGaXy0VZUFlB?s=sh&amp;p=i&amp;mlu=4&amp;amv=0" class="link-card wa full" target="_blank">
                 <div class="link-icon">💬</div>
                 <div class="link-text">
                     <span class="link-label">Join the WhatsApp Support Group</span>
@@ -441,6 +499,58 @@
                 </div>
                 <span class="link-arrow">→</span>
             </a>
+        </div>
+
+        <!-- Study Details -->
+        <div class="section">
+            <div class="section-eyebrow">Study details</div>
+            <h2 class="section-title">What you need to know</h2>
+            <p class="section-sub">Key logistics for the program — read through before you get started.</p>
+
+            <div class="info-cards">
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">🎁</div>
+                        <div class="info-card-title">Signing Up</div>
+                    </div>
+                    <div class="info-card-body">
+                        All of you will be receiving <strong>one year free of Ray</strong>. Please open the app on your phone to download it. If it doesn't work for some reason, when asked to subscribe, please enter this code: <strong>GLP1Study</strong> — and you will get the one year free.
+                        <div class="note"><strong>Already have Ray downloaded?</strong> Cancel your subscription and we will manually grant you one free year. Please reply to this email with the phone number and email you used to sign up.</div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">💬</div>
+                        <div class="info-card-title">WhatsApp Community</div>
+                    </div>
+                    <div class="info-card-body">
+                        Use the <a href="https://chat.whatsapp.com/Jikm9pzi8NBGaXy0VZUFlB?s=sh&amp;p=i&amp;mlu=4&amp;amv=0" target="_blank" style="color: var(--wa); text-decoration: none; font-weight: 600;">WhatsApp link above</a> to join. Once you're in, go ahead and <strong>introduce yourself</strong> — where are you from, how long you've been on GLP-1, something you're excited for, and any specific training goals you have outside of weight loss. This is where we'll be sending reminders for check-ins and it's a great place for us to converse on how the workouts are going and discuss anything you're struggling with.
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">💳</div>
+                        <div class="info-card-title">Payment</div>
+                    </div>
+                    <div class="info-card-body">
+                        Payment will be happening via <strong>Amazon gift card</strong>. You'll receive a <strong>$75 gift card</strong> during the first week and the remaining <strong>$125 at the end of the study</strong>. Please reply to this email if you'd like to use a different email address than the one you're cc'd on.
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">📋</div>
+                        <div class="info-card-title">Weekly Touchpoints</div>
+                    </div>
+                    <div class="info-card-body">
+                        Each week you'll be asked to complete a <strong>weekly survey</strong> and a <strong>pre-workout check-in</strong> before each session — that's <strong>3 forms per week</strong>. All weekly check-ins will be due by <strong>Monday at 10am EST</strong> so we can adjust your workouts and ensure a good experience.
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <!-- Program Overview -->
@@ -478,12 +588,20 @@
                 <div class="step-item">
                     <div class="step-num">1</div>
                     <div class="step-body">
+                        <div class="step-title">Join the WhatsApp support group</div>
+                        <div class="step-desc">Use the link above to join. Once you're in, please <strong style="color: var(--text);">introduce yourself</strong> — let the group know: how long you've been on GLP-1, something you're excited for, and any specific training goals you have outside of weight loss.</div>
+                        <span class="step-tag">Required</span>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
                         <div class="step-title">Download the Ray app</div>
                         <div class="step-desc">Available on iOS. Search for "Ray AI Trainer" and install.</div>
                     </div>
                 </div>
                 <div class="step-item">
-                    <div class="step-num">2</div>
+                    <div class="step-num">3</div>
                     <div class="step-body">
                         <div class="step-title">Complete onboarding</div>
                         <div class="step-desc">Ray will ask about your fitness goals, experience level, and what kind of training you enjoy. Take your time — your answers shape everything. <strong style="color: var(--text);">When asked about medications or health context, please note that you are on a GLP-1</strong> — this helps Ray tailor your program to how your body is responding.</div>
@@ -491,25 +609,17 @@
                     </div>
                 </div>
                 <div class="step-item">
-                    <div class="step-num">3</div>
+                    <div class="step-num">4</div>
                     <div class="step-body">
                         <div class="step-title">Set your gym environment &amp; equipment</div>
                         <div class="step-desc">Tell Ray where you work out — commercial gym, home gym, outdoors — and what equipment you have access to. Your workouts will be built around exactly what's available to you.</div>
                     </div>
                 </div>
                 <div class="step-item">
-                    <div class="step-num">4</div>
+                    <div class="step-num">5</div>
                     <div class="step-body">
                         <div class="step-title">Pick your 2 workout days</div>
                         <div class="step-desc">Choose the two days each week that work best for you. You can always adjust these inside Ray if your schedule changes.</div>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-num">5</div>
-                    <div class="step-body">
-                        <div class="step-title">Join the WhatsApp support group</div>
-                        <div class="step-desc">Use the link above to join. This is where you can ask questions, flag anything that's not working, and connect with others in the program.</div>
-                        <span class="step-tag">Required</span>
                     </div>
                 </div>
                 <div class="step-item">
@@ -628,7 +738,7 @@
         <!-- Footer -->
         <div class="footer">
             <p class="footer-text">
-                Questions? Drop them in the <a href="file:///Users/simranjobanputra/Desktop/ray-glp1-guidelines.html#">WhatsApp group</a> or reach out directly.<br>
+                Questions? Drop them in the <a href="https://chat.whatsapp.com/Jikm9pzi8NBGaXy0VZUFlB?s=sh&amp;p=i&amp;mlu=4&amp;amv=0" target="_blank">WhatsApp group</a> or reach out directly.<br>
                 We're here every step of the way.
             </p>
         </div>
