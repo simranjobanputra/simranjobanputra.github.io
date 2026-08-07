@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)file:///Users/simranjobanputra/Desktop/ray-glp1-guidelines.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ray — GLP-1 Participant Guide</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #080808;
+            --surface: #141414;
+            --surface-2: #1e1e1e;
+            --border: rgba(255,255,255,0.07);
+            --border-2: rgba(255,255,255,0.12);
+            --accent: #E4543C;
+            --accent-light: #E4543C;
+            --accent-dim: rgba(228,84,60,0.12);
+            --text: #f0f0f0;
+            --subtext: #777;
+            --subtext-2: #999;
+            --green: #22c55e;
+            --green-dim: rgba(34,197,94,0.1);
+            --wa: #25D366;
+            --wa-dim: rgba(37,211,102,0.1);
+        }
+
+        @media print {
+            body { background: #fff; color: #111; }
+            .no-print { display: none !important; }
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 52px 24px 0;
+        }
+
+        .ray-logo {
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--subtext);
+            margin-bottom: 28px;
+        }
+
+        .ray-logo span { color: var(--accent-light); }
+
+        .program-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(228,84,60,0.25);
+            border-radius: 100px;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .program-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-title {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+
+        .hero-title span { color: var(--accent-light); }
+
+        .hero-sub {
+            font-size: 16px;
+            color: var(--subtext-2);
+            max-width: 480px;
+            line-height: 1.65;
+            margin-bottom: 40px;
+        }
+
+        /* ── Content wrapper ── */
+        .content {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Quick links ── */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--text);
+            transition: border-color 0.15s, background 0.15s;
+        }
+
+        .link-card:hover { border-color: var(--accent); background: var(--accent-dim); }
+
+        .link-card.wa { border-color: rgba(37,211,102,0.2); }
+        .link-card.wa:hover { border-color: var(--wa); background: var(--wa-dim); }
+        .link-card.wa .link-icon { background: var(--wa-dim); color: var(--wa); }
+
+        .link-card.full { grid-column: 1 / -1; }
+
+        .link-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--accent-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .link-text { flex: 1; }
+        .link-label { font-size: 13px; font-weight: 700; display: block; margin-bottom: 1px; }
+        .link-desc { font-size: 12px; color: var(--subtext); }
+
+        .link-arrow { color: var(--subtext); font-size: 16px; }
+
+        /* ── Info cards ── */
+        .info-cards { display: flex; flex-direction: column; gap: 12px; }
+
+        .info-card {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .info-card-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: var(--accent-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .info-card-title {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text);
+        }
+
+        .info-card-body {
+            font-size: 14px;
+            color: var(--subtext-2);
+            line-height: 1.65;
+        }
+
+        .info-card-body strong { color: var(--text); font-weight: 600; }
+
+        .info-card-body .note {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: var(--surface-2);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            color: var(--subtext-2);
+            line-height: 1.6;
+        }
+
+        .info-card-body .note strong { color: var(--text); }
+
+        /* ── Section ── */
+        .section { margin-top: 48px; }
+
+        .section-eyebrow {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 8px;
+        }
+
+        .section-sub {
+            font-size: 15px;
+            color: var(--subtext-2);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        /* ── Program overview pills ── */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .overview-card {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 16px;
+        }
+
+        .overview-num {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--accent-light);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .overview-label {
+            font-size: 13px;
+            color: var(--subtext-2);
+            font-weight: 500;
+        }
+
+        /* ── Onboarding steps ── */
+        .steps { display: flex; flex-direction: column; gap: 0; }
+
+        .step-item {
+            display: flex;
+            gap: 16px;
+            position: relative;
+        }
+
+        .step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 17px;
+            top: 42px;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-dim);
+            border: 1.5px solid rgba(228,84,60,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--accent-light);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-body { flex: 1; padding-bottom: 28px; }
+
+        .step-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: var(--subtext-2);
+            line-height: 1.6;
+        }
+
+        .step-tag {
+            display: inline-block;
+            background: var(--green-dim);
+            color: var(--green);
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-top: 6px;
+        }
+
+        /* ── Divider ── */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 48px 0 0;
+        }
+
+        /* ── Week cards ── */
+        .weeks { display: flex; flex-direction: column; gap: 16px; }
+
+        .week-card {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .week-card.active-week { border-color: rgba(228,84,60,0.4); }
+
+        .week-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .week-num {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--subtext);
+            flex-shrink: 0;
+        }
+
+        .week-theme {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .week-badge {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 100px;
+            flex-shrink: 0;
+        }
+
+        .badge-setup { background: var(--accent-dim); color: var(--accent-light); }
+        .badge-explore { background: rgba(251,191,36,0.1); color: #fbbf24; }
+        .badge-learn { background: rgba(34,197,94,0.1); color: #22c55e; }
+        .badge-measure { background: rgba(239,68,68,0.1); color: #f87171; }
+
+        .week-body { padding: 22px; }
+
+        .week-section-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--subtext);
+            margin-bottom: 12px;
+        }
+
+        .learn-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 0;
+        }
+
+        .learn-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--subtext-2);
+            line-height: 1.5;
+        }
+
+        .learn-list li::before {
+            content: '→';
+            color: var(--accent-light);
+            flex-shrink: 0;
+            font-size: 13px;
+            margin-top: 1px;
+        }
+
+        .week-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 18px 0;
+        }
+
+        .callout {
+            background: var(--surface-2);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            padding: 12px 16px;
+            font-size: 14px;
+            color: var(--subtext-2);
+            line-height: 1.55;
+        }
+
+        .callout strong { color: var(--text); font-weight: 600; }
+
+        /* ── Footer ── */
+        .footer {
+            max-width: 640px;
+            margin: 48px auto 0;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--subtext);
+            line-height: 1.7;
+        }
+
+        .footer-text a { color: var(--accent-light); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="ray-logo">Ray<span>.</span></div>
+        <div class="program-badge">GLP-1 Pilot Program</div>
+        <h1 class="hero-title">Your guide to the<br><span>next 4 weeks.</span></h1>
+        <p class="hero-sub">Everything you need to know about how the program works, what to do each week, and how to get the most out of Ray on your GLP-1 journey.</p>
+    </div>
+
+    <div class="content">
+
+        <!-- Quick Links -->
+        <div class="section-eyebrow">Quick links</div>
+        <div class="links-grid">
+            <a href="https://rayfit.typeform.com/to/tcLe5Mnv" class="link-card" target="_blank">
+                <div class="link-icon">⚡</div>
+                <div class="link-text">
+                    <span class="link-label">Pre-Workout Check-in</span>
+                    <span class="link-desc">2× per week — before each session</span>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+            <a href="https://rayfit.typeform.com/to/QCDDWgKd" class="link-card" target="_blank">
+                <div class="link-icon">📋</div>
+                <div class="link-text">
+                    <span class="link-label">Weekly Check-in</span>
+                    <span class="link-desc">Due by Monday at 10am EST</span>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+            <a href="https://chat.whatsapp.com/Jikm9pzi8NBGaXy0VZUFlB?s=sh&amp;p=i&amp;mlu=4&amp;amv=0" class="link-card wa full" target="_blank">
+                <div class="link-icon">💬</div>
+                <div class="link-text">
+                    <span class="link-label">Join the WhatsApp Support Group</span>
+                    <span class="link-desc">Ask questions, share wins, connect with other participants</span>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+        </div>
+
+        <!-- Study Details -->
+        <div class="section">
+            <div class="section-eyebrow">Study details</div>
+            <h2 class="section-title">What you need to know</h2>
+            <p class="section-sub">Key logistics for the program — read through before you get started.</p>
+
+            <div class="info-cards">
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">🎁</div>
+                        <div class="info-card-title">Signing Up</div>
+                    </div>
+                    <div class="info-card-body">
+                        All of you will be receiving <strong>one year free of Ray</strong>. Please <a href="https://join.rayfit.com/lY4w/wf59goz6?deep_link_sub2=GLP1Study" target="_blank" style="color: var(--accent-light); text-decoration: none; font-weight: 600;">open this link on your phone to download the app</a>. If it doesn't work for some reason, when asked to subscribe, please enter this code: <strong>GLP1Study</strong> — and you will get the one year free.
+                        <div class="note"><strong>Already have Ray downloaded?</strong> Cancel your subscription and we will manually grant you one free year. Please reply to this email with the phone number and email you used to sign up.</div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">💬</div>
+                        <div class="info-card-title">WhatsApp Community</div>
+                    </div>
+                    <div class="info-card-body">
+                        Use the <a href="https://chat.whatsapp.com/Jikm9pzi8NBGaXy0VZUFlB?s=sh&amp;p=i&amp;mlu=4&amp;amv=0" target="_blank" style="color: var(--wa); text-decoration: none; font-weight: 600;">WhatsApp link above</a> to join. Once you're in, go ahead and <strong>introduce yourself</strong> — where are you from, how long you've been on GLP-1, something you're excited for, and any specific training goals you have outside of weight loss. This is where we'll be sending reminders for check-ins and it's a great place for us to converse on how the workouts are going and discuss anything you're struggling with.
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">💳</div>
+                        <div class="info-card-title">Payment</div>
+                    </div>
+                    <div class="info-card-body">
+                        Payment will be sent via <strong>Mercury</strong> — you'll receive an email with details on how to collect it. You'll receive <strong>$75 during the first week</strong> and the remaining <strong>$125 at the end of the study</strong>.
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">📋</div>
+                        <div class="info-card-title">Weekly Touchpoints</div>
+                    </div>
+                    <div class="info-card-body">
+                        Each week you'll complete <strong>1 weekly check-in</strong> and <strong>2 pre-workout surveys</strong> (one before each session) — that's <strong>3 forms per week</strong>. All weekly check-ins are due by <strong>Monday at 10am EST</strong> so we can adjust your workouts and ensure a good experience.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Program Overview -->
+        <div class="section">
+            <div class="section-eyebrow">How it works</div>
+            <h2 class="section-title">Your 4-week program</h2>
+            <p class="section-sub">Workouts are built around your gym, your equipment, and your level — no two programs look exactly alike. Ray adapts as you go.</p>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="overview-num">4</div>
+                    <div class="overview-label">weeks total</div>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-num">2×</div>
+                    <div class="overview-label">workouts per week</div>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-num">1×</div>
+                    <div class="overview-label">weekly check-in</div>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-num">2×</div>
+                    <div class="overview-label">pre-workout surveys</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Getting Set Up -->
+        <div class="section">
+            <div class="section-eyebrow">Getting started</div>
+            <h2 class="section-title">Setting up Ray</h2>
+            <p class="section-sub">Before your first workout, get Ray fully set up so it can personalize everything to you.</p>
+
+            <div class="steps">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <div class="step-title">Join the WhatsApp support group</div>
+                        <div class="step-desc">Use the link above to join. Once you're in, please <strong style="color: var(--text);">introduce yourself</strong> — let the group know: how long you've been on GLP-1, something you're excited for, and any specific training goals you have outside of weight loss.</div>
+                        <span class="step-tag">Required</span>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <div class="step-title">Download the Ray app</div>
+                        <div class="step-desc">Open <a href="https://join.rayfit.com/lY4w/wf59goz6?deep_link_sub2=GLP1Study" target="_blank" style="color: var(--accent-light); text-decoration: none; font-weight: 600;">this link on your phone</a> to download Ray. Available on iOS.</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <div class="step-title">Complete onboarding</div>
+                        <div class="step-desc">Ray will ask about your fitness goals, experience level, and what kind of training you enjoy. Take your time — your answers shape everything. <strong style="color: var(--text);">When asked about medications or health context, please note that you are on a GLP-1</strong> — this helps Ray tailor your program to how your body is responding.</div>
+                        <span class="step-tag">Important</span>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-body">
+                        <div class="step-title">Set your gym environment &amp; equipment</div>
+                        <div class="step-desc">Tell Ray where you work out — commercial gym, home gym, outdoors — and what equipment you have access to. Your workouts will be built around exactly what's available to you.</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">5</div>
+                    <div class="step-body">
+                        <div class="step-title">Pick your 2 workout days</div>
+                        <div class="step-desc">Choose the two days each week that work best for you. You can always adjust these inside Ray if your schedule changes.</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">6</div>
+                    <div class="step-body">
+                        <div class="step-title">Complete your first pre-workout check-in</div>
+                        <div class="step-desc">Before each of your 2 weekly sessions, fill out the quick pre-workout check-in above. It takes under a minute and helps Ray understand how you're feeling that day.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Week by week -->
+        <div class="section">
+            <div class="section-eyebrow">Week by week</div>
+            <h2 class="section-title">What you'll learn</h2>
+            <p class="section-sub">Each week builds on the last. Here's what to focus on as you go.</p>
+
+            <div class="weeks">
+
+                <!-- Week 1 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-num">Week 1</span>
+                        <span class="week-theme">Getting Set Up</span>
+                        <span class="week-badge badge-setup">Foundation</span>
+                    </div>
+                    <div class="week-body">
+                        <div class="week-section-title">Your focus this week</div>
+                        <ul class="learn-list">
+                            <li>Complete onboarding and do your first two Ray workouts</li>
+                            <li>Get familiar with how Ray structures a session — warm-up, main work, cool-down</li>
+                            <li>Fill out the pre-workout survey before each session and the weekly check-in at the end of the week</li>
+                            <li>Join the WhatsApp group and introduce yourself</li>
+                            <li>Notice how your body feels during and after workouts on GLP-1 — energy, appetite, recovery</li>
+                        </ul>
+                        <div class="week-divider"></div>
+                        <div class="callout">
+                            <strong>This week's goal:</strong> Just show up. The workouts don't need to be perfect — getting through them and filling out your check-ins is the win.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 2 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-num">Week 2</span>
+                        <span class="week-theme">Make Ray Your Personal Trainer</span>
+                        <span class="week-badge badge-explore">Personalize</span>
+                    </div>
+                    <div class="week-body">
+                        <div class="week-section-title">Your focus this week</div>
+                        <ul class="learn-list">
+                            <li>Start talking to Ray mid-session — ask it to swap an exercise, scale a movement up or down, or explain why it chose something</li>
+                            <li>Tell Ray what feels good and what doesn't — it remembers, adapts, and gets more specific to you over time</li>
+                            <li>Explore training styles beyond your default plan and find what actually resonates with how your body is feeling on GLP-1</li>
+                            <li>Adjust your schedule inside Ray if your week changes — your trainer fits around your life, not the other way around</li>
+                        </ul>
+                        <div class="week-divider"></div>
+                        <div class="callout">
+                            <strong>This week's goal:</strong> Ray isn't a generic workout app — it's your personal trainer. The more you communicate with it, the more it becomes specific to you. Start that relationship this week.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 3 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-num">Week 3</span>
+                        <span class="week-theme">Thinking About Progress</span>
+                        <span class="week-badge badge-learn">Learn</span>
+                    </div>
+                    <div class="week-body">
+                        <div class="week-section-title">Your focus this week</div>
+                        <ul class="learn-list">
+                            <li>Learn what progressive overload means — gradually increasing the demand on your muscles over time</li>
+                            <li>Start tracking how weights, reps, and sets are shifting week-to-week (Ray does this for you — start noticing it)</li>
+                            <li>Understand why strength training matters especially on GLP-1 — preserving and building muscle while losing weight</li>
+                            <li>Notice the difference between a workout that was hard because of effort vs. hard because your body wasn't ready</li>
+                        </ul>
+                        <div class="week-divider"></div>
+                        <div class="callout">
+                            <strong>This week's goal:</strong> Shift your mindset from "completing workouts" to "getting stronger." Progress on GLP-1 looks different — and that's a good thing.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week 4 -->
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-num">Week 4</span>
+                        <span class="week-theme">Measuring Your Progress</span>
+                        <span class="week-badge badge-measure">Reflect</span>
+                    </div>
+                    <div class="week-body">
+                        <div class="week-section-title">Your focus this week</div>
+                        <ul class="learn-list">
+                            <li>Look back at Week 1 — compare how workouts feel now vs. when you started</li>
+                            <li>Review the weights and reps from your first sessions — notice what's changed</li>
+                            <li>Think beyond the scale: energy levels, how you move, strength, endurance, and how GLP-1 side effects have evolved</li>
+                            <li>Complete your final weekly check-in with as much detail as you can — your feedback shapes what comes next</li>
+                            <li>Share your biggest win from the 4 weeks in the WhatsApp group</li>
+                        </ul>
+                        <div class="week-divider"></div>
+                        <div class="callout">
+                            <strong>This week's goal:</strong> Reflect honestly. Progress isn't always linear — but 4 weeks of consistent movement, especially on GLP-1, is genuinely significant. Acknowledge it.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                Questions? Drop them in the <a href="https://chat.whatsapp.com/Jikm9pzi8NBGaXy0VZUFlB?s=sh&amp;p=i&amp;mlu=4&amp;amv=0" target="_blank">WhatsApp group</a> or reach out directly.<br>
+                We're here every step of the way.
+            </p>
+        </div>
+
+    </div>
+
+
+
+</body></html>
