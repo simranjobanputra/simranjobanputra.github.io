@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ray — Moments of Truth Explorations</title>
+  <style>
+    :root {
+      --cream: #EDEDE5;
+      --dark: #1A1A1A;
+      --terra: #C45836;
+      --peach: #EDB5A0;
+      --salmon: #DFA090;
+      --muted: #888880;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #E2E1DA;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      min-height: 100vh;
+      color: var(--dark);
+    }
+
+    header {
+      padding: 36px 48px 20px;
+      background: var(--cream);
+    }
+
+    header .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      padding: 0 48px;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(26,26,26,0.1);
+      gap: 4px;
+    }
+
+    .tab {
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--muted);
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab.active {
+      color: var(--dark);
+      border-bottom-color: var(--terra);
+    }
+
+    /* Layout */
+    .content {
+      padding: 48px;
+      display: flex;
+      gap: 56px;
+      align-items: flex-start;
+      max-width: 1160px;
+    }
+
+    .direction { display: none; width: 100%; gap: 56px; align-items: flex-start; }
+    .direction.active { display: flex; }
+
+    /* Phone */
+    .phone {
+      width: 300px;
+      height: 648px;
+      border-radius: 42px;
+      border: 10px solid var(--dark);
+      overflow: hidden;
+      position: relative;
+      background: var(--cream);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .screen.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .replay-btn {
+      margin-top: 16px;
+      padding: 9px 18px;
+      background: var(--dark);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+
+    /* Description */
+    .desc {
+      flex: 1;
+      padding-top: 4px;
+    }
+
+    .desc h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .desc p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #555;
+      margin-bottom: 14px;
+    }
+
+    .callout-box {
+      background: white;
+      border: 1px solid rgba(26,26,26,0.1);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 12px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .callout-box .label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 6px;
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* ========================
+       SHARED SCREEN COMPONENTS
+    ======================== */
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 18px 0;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .progress-track {
+      height: 2px;
+      background: rgba(26,26,26,0.1);
+      border-radius: 2px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--dark);
+      border-radius: 2px;
+    }
+
+    .q-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .q-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 19px;
+      line-height: 1.35;
+      color: var(--dark);
+    }
+
+    /* Blob */
+    @keyframes blob-morph {
+      0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 60%; }
+      33%       { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; }
+      66%       { border-radius: 70% 30% 50% 50% / 40% 60% 40% 60%; }
+    }
+
+    .blob {
+      background: radial-gradient(ellipse at 40% 35%, #EDB5A0, #C45836);
+      animation: blob-morph 4s ease-in-out infinite;
+    }
+
+    /* ========================
+       DIRECTION 1 SCREENS
+    ======================== */
+
+    /* Equipment screen */
+    #d1-equip {
+      background: var(--cream);
+      padding: 0;
+    }
+
+    #d1-equip .inner {
+      padding: 12px 20px 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chip-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      padding: 10px 12px;
+      border: 1.5px solid rgba(26,26,26,0.18);
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: center;
+      color: var(--dark);
+    }
+
+    .chip.sel {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: white;
+    }
+
+    .cta-btn {
+      margin-top: auto;
+      padding: 14px;
+      background: var(--dark);
+      color: white;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Reflection screen */
+    #d1-reflect {
+      background: var(--cream);
+    }
+
+    #d1-reflect .inner {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px 24px;
+    }
+
+    .reflect-blob {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 28px;
+    }
+
+    .reflect-line {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--dark);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      margin-bottom: 10px;
+    }
+
+    .reflect-line.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reflect-line strong {
+      font-weight: 700;
+    }
+
+    .reflect-building {
+      margin-top: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .reflect-building.show { opacity: 1; }
+
+    /* Building screen */
+    #d1-building {
+      background: var(--dark);
+    }
+
+    #d1-building .inner {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .build-blob {
+      width: 80px;
+      height: 80px;
+      animation: blob-morph 3s ease-in-out infinite, pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    #d1-building .build-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* Plan screen — shared */
+    .plan-screen {
+      background: var(--dark);
+      overflow-y: auto;
+    }
+
+    .plan-head {
+      padding: 28px 20px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .plan-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 6px;
+    }
+
+    .plan-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 21px;
+      color: white;
+      line-height: 1.25;
+    }
+
+    .plan-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.55;
+      margin-top: 7px;
+    }
+
+    .plan-sec {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .sec-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 12px;
+    }
+
+    .phases { display: flex; flex-direction: column; gap: 10px; }
+
+    .phase { display: flex; align-items: center; gap: 10px; }
+
+    .phase-bar { height: 5px; border-radius: 3px; width: 64px; flex-shrink: 0; }
+
+    .phase-name { font-size: 12px; font-weight: 600; color: white; }
+    .phase-wks  { font-size: 11px; color: rgba(255,255,255,0.35); }
+
+    .p-callout {
+      background: rgba(196, 88, 54, 0.12);
+      border: 1px solid rgba(196, 88, 54, 0.25);
+      border-radius: 9px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+
+    .p-callout .ctag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 3px;
+    }
+
+    .p-callout .ctext {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    .stats-row { display: flex; gap: 8px; margin-top: 4px; }
+
+    .stat-card {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border-radius: 9px;
+      padding: 10px 12px;
+    }
+
+    .stat-lbl  { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(255,255,255,0.3); margin-bottom: 3px; }
+    .stat-val  { font-size: 20px; font-weight: 700; color: white; }
+    .stat-unit { font-size: 10px; color: rgba(255,255,255,0.4); }
+
+    /* ========================
+       DIRECTION 3 — BOTTOM SHEET
+    ======================== */
+
+    .d3-phone-wrap { position: relative; }
+
+    /* Plan screen for dir3 — no overflow, just shows top portion */
+    #d3-plan { overflow: hidden; }
+
+    /* Bottom sheet */
+    .workout-sheet {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 76%;
+      background: var(--cream);
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.28);
+      transform: translateY(100%);
+      transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .workout-sheet.open {
+      transform: translateY(0);
+    }
+
+    .sheet-handle {
+      width: 36px;
+      height: 4px;
+      background: rgba(26,26,26,0.15);
+      border-radius: 2px;
+      margin: 12px auto 0;
+      flex-shrink: 0;
+    }
+
+    .sheet-head {
+      padding: 14px 20px 12px;
+      border-bottom: 1px solid rgba(26,26,26,0.07);
+      flex-shrink: 0;
+    }
+
+    .sheet-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 4px;
+    }
+
+    .sheet-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .sheet-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* Horizontal exercise cards */
+    .sheet-scroll {
+      flex: 1;
+      display: flex;
+      gap: 8px;
+      padding: 10px 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .sheet-scroll::-webkit-scrollbar { display: none; }
+
+    .ex-vcard {
+      min-width: 148px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 14px 14px 16px;
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      opacity: 0;
+      transform: translateX(16px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .ex-vcard.show { opacity: 1; transform: translateX(0); }
+
+    .vc-blob {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 120px;
+      height: 120px;
+      animation: blob-morph 5s ease-in-out infinite;
+    }
+
+    .vc-num {
+      font-family: Georgia, serif;
+      font-size: 56px;
+      line-height: 1;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vc-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 7px;
+      width: fit-content;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vc-name {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vc-why {
+      font-size: 11px;
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Sheet CTA */
+    .sheet-cta {
+      padding: 12px 20px 20px;
+      flex-shrink: 0;
+    }
+
+    .sheet-cta-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--dark);
+      color: white;
+      border: none;
+      border-radius: 13px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .sheet-cta-btn.show { opacity: 1; }
+
+    /* ========================
+       DIRECTION NEW — INSIGHT SCREENS
+    ======================== */
+
+    /* Question screen (standard onboarding style) */
+    .q-screen {
+      background: var(--cream);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 12px 20px 20px;
+    }
+
+    .q-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .q-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terra);
+    }
+
+    .q-pct {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .q-progress {
+      height: 2px;
+      background: rgba(26,26,26,0.08);
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .q-progress-fill {
+      height: 100%;
+      background: var(--dark);
+      border-radius: 2px;
+    }
+
+    /* The blob sits in the question screens too, medium size */
+    .q-blob {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 20px;
+    }
+
+    .q-heading {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .q-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      justify-content: center;
+      margin-bottom: auto;
+    }
+
+    .q-chip {
+      padding: 8px 14px;
+      border: 1.5px solid rgba(26,26,26,0.15);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .q-chip.picked {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: white;
+    }
+
+    .q-continue {
+      padding: 13px;
+      background: var(--dark);
+      color: white;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    /* INSIGHT SCREEN — completely different visual language */
+    .insight-screen {
+      background: var(--cream);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Large atmospheric blob — takes up the top 55% */
+    .insight-bg-blob {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(ellipse at 40% 35%, rgba(237,181,160,0.55), rgba(196,88,54,0.28));
+      animation: blob-morph 5s ease-in-out infinite;
+      filter: blur(1px);
+    }
+
+    /* Small secondary blob — adds depth */
+    .insight-bg-blob-2 {
+      position: absolute;
+      top: 60px;
+      left: 20px;
+      width: 90px;
+      height: 90px;
+      background: radial-gradient(ellipse at 50% 50%, rgba(237,181,160,0.35), rgba(196,88,54,0.1));
+      animation: blob-morph 6s ease-in-out 1s infinite;
+    }
+
+    .insight-content {
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+      padding: 0 24px 28px;
+    }
+
+    .insight-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .insight-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 20px;
+      line-height: 1.4;
+      color: var(--dark);
+      margin-bottom: 16px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
+    }
+
+    .insight-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.5s ease 0.25s, transform 0.5s ease 0.25s;
+    }
+
+    .i-tag {
+      padding: 5px 11px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .i-tag.new {
+      background: var(--dark);
+      color: white;
+    }
+
+    .i-tag.old {
+      background: rgba(26,26,26,0.08);
+      color: var(--dark);
+    }
+
+    .insight-content .insight-label.show,
+    .insight-content .insight-text.show,
+    .insight-content .insight-tags.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================
+       DIRECTION WRAPPED
+    ======================== */
+
+    .wc {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 28px 22px 32px;
+      opacity: 0;
+      transition: opacity 0.55s ease;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .wc.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Progress dots */
+    .wc-dots {
+      display: flex;
+      gap: 4px;
+      margin-bottom: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .wc-dot {
+      flex: 1;
+      height: 2px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.25);
+      transition: background 0.4s ease;
+    }
+
+    .wc-dot.done { background: rgba(255,255,255,0.9); }
+
+    .wc-dot-dark { background: rgba(26,26,26,0.18); }
+    .wc-dot-dark.done { background: rgba(26,26,26,0.7); }
+
+    /* Decorative blob for wrapped cards */
+    .wc-blob {
+      position: absolute;
+      animation: blob-morph 5s ease-in-out infinite;
+    }
+
+    /* Bottom text block */
+    .wc-text {
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+    }
+
+    .wc-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.45s ease 0.1s, transform 0.45s ease 0.1s;
+    }
+
+    .wc-headline {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 52px;
+      line-height: 1.0;
+      margin-bottom: 12px;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.45s ease 0.2s, transform 0.45s ease 0.2s;
+    }
+
+    .wc-sub {
+      font-size: 13px;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.45s ease 0.35s, transform 0.45s ease 0.35s;
+    }
+
+    .wc.active .wc-label,
+    .wc.active .wc-headline,
+    .wc.active .wc-sub {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Individual card label sub-opacity */
+    .wc-label-light { opacity: 0.45; }
+    .wc-sub-light   { opacity: 0.55; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Ray Fitness · Moments of Truth · Moment 1</div>
+  <h1>Direction Explorations — Does Ray Understand Me?</h1>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('dir1', this)">Direction 1 — Ray Reflects</div>
+  <div class="tab" onclick="switchTab('dir3', this)">Direction 3 — Personalized Plan</div>
+  <div class="tab" onclick="switchTab('dirnew', this)">Direction New — Insight Screens</div>
+  <div class="tab" onclick="switchTab('dirwrap', this)">Direction Wrapped — The Reveal</div>
+</div>
+
+<div class="content">
+
+  <!-- ==================== DIRECTION 1 ==================== -->
+  <div id="dir1" class="direction active">
+    <div>
+      <div class="phone">
+
+        <!-- SCREEN: Equipment (last question) -->
+        <div class="screen active" id="d1-equip">
+          <div class="inner">
+            <div class="status-bar" style="padding: 10px 18px 0;">
+              <span>9:41</span>
+              <span style="font-size:10px;">●●●</span>
+            </div>
+            <div class="progress-track" style="margin: 12px 0 16px;">
+              <div class="progress-fill" style="width: 90%;"></div>
+            </div>
+            <div class="q-label">EQUIPMENT</div>
+            <div class="q-text">What equipment do you have access to?</div>
+            <div class="chip-grid">
+              <div class="chip sel">Dumbbells</div>
+              <div class="chip sel">Resistance bands</div>
+              <div class="chip">Barbell</div>
+              <div class="chip">Pull-up bar</div>
+              <div class="chip">Bench</div>
+              <div class="chip">No equipment</div>
+            </div>
+            <div class="cta-btn" style="margin-top: 20px;">Continue</div>
+          </div>
+        </div>
+
+        <!-- SCREEN: Reflection -->
+        <div class="screen" id="d1-reflect">
+          <div class="inner">
+            <div class="blob reflect-blob"></div>
+            <div class="reflect-line" id="rl1" style="font-size:19px; font-weight:600;">Got it, Y.</div>
+            <div class="reflect-line" id="rl2">You want to get stronger —<br><strong>specifically for dance.</strong></div>
+            <div class="reflect-line" id="rl3">You've had trouble staying<br>consistent before.</div>
+            <div class="reflect-line" id="rl4">Three days a week, working<br>with what you've got.</div>
+            <div class="reflect-building" id="rl-build">Building your plan now...</div>
+          </div>
+        </div>
+
+        <!-- SCREEN: Building -->
+        <div class="screen" id="d1-building">
+          <div class="inner">
+            <div class="blob build-blob"></div>
+            <div class="build-text" id="build-text">Building your plan</div>
+          </div>
+        </div>
+
+        <!-- SCREEN: Plan (personalized) -->
+        <div class="screen plan-screen" id="d1-plan">
+          <div class="plan-head">
+            <div class="plan-eyebrow">YOUR PLAN</div>
+            <div class="plan-title">Get stronger for dance, Y.</div>
+            <div class="plan-sub">Built around strength that transfers — balance, power, control. The kind that shows up when you move.</div>
+          </div>
+          <div class="plan-sec">
+            <div class="sec-label">FIRST 8 WEEKS</div>
+            <div class="phases">
+              <div class="phase">
+                <div class="phase-bar" style="background:#EDB5A0;"></div>
+                <div><div class="phase-name">Build foundation</div><div class="phase-wks">Weeks 1–3</div></div>
+              </div>
+              <div class="phase">
+                <div class="phase-bar" style="background:#C45836;"></div>
+                <div><div class="phase-name">Build power</div><div class="phase-wks">Weeks 4–6</div></div>
+              </div>
+              <div class="phase">
+                <div class="phase-bar" style="background:#DFA090;"></div>
+                <div><div class="phase-name">See it move</div><div class="phase-wks">Weeks 7–8</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="plan-sec">
+            <div class="sec-label">HOW WE TRAIN</div>
+            <div class="p-callout">
+              <div class="ctag">For your dancing</div>
+              <div class="ctext">3 sessions a week — leaves room for rehearsals. Ray adjusts when your week shifts.</div>
+            </div>
+            <div class="p-callout">
+              <div class="ctag">Because you said</div>
+              <div class="ctext">Consistency has been the hard part. We start lighter and build — not the other way around.</div>
+            </div>
+            <div class="stats-row">
+              <div class="stat-card"><div class="stat-lbl">Frequency</div><div class="stat-val">3×<span class="stat-unit">/wk</span></div></div>
+              <div class="stat-card"><div class="stat-lbl">Length</div><div class="stat-val">30<span class="stat-unit">m</span></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <button class="replay-btn" onclick="replayDir1()">↺ Replay</button>
+    </div>
+
+    <div class="desc">
+      <h3>Direction 1 — Ray reflects before it reveals</h3>
+      <p>After the last question, before showing any plan, Ray plays back what it actually heard — in natural language. One screen. A few seconds. Then the plan appears.</p>
+      <div class="callout-box">
+        <div class="label">The moment</div>
+        "Got it, Y. You want to get stronger — <em>specifically for dance.</em> You've had trouble staying consistent before. Three days a week, working with what you've got. Building your plan now."
+      </div>
+      <p>This is what a real trainer does after an intake. The word <em>specifically</em> is doing the work — it signals Ray retained the detail, not just the category.</p>
+      <p>The plan that follows earns more trust because the reflection set it up. Without it, the plan screen is a dashboard. With it, it's a reveal.</p>
+      <p class="note">Could be text-only or include Ray's blob. Does not need to be long. 3–4 lines. The restraint is part of the confidence.</p>
+    </div>
+  </div>
+
+  <!-- ==================== DIRECTION 3 ==================== -->
+  <div id="dir3" class="direction">
+    <div class="d3-phone-wrap">
+      <div class="phone">
+
+        <!-- Plan screen — visible behind the sheet -->
+        <div class="screen active plan-screen" id="d3-plan">
+          <div class="plan-head">
+            <div class="plan-eyebrow">YOUR PLAN</div>
+            <div class="plan-title">Get stronger for dance, Y.</div>
+            <div class="plan-sub">Built around strength that transfers — balance, power, control. The kind that shows up on stage.</div>
+          </div>
+          <div class="plan-sec">
+            <div class="sec-label">FIRST 8 WEEKS</div>
+            <div class="phases">
+              <div class="phase">
+                <div class="phase-bar" style="background:#EDB5A0;"></div>
+                <div><div class="phase-name">Build foundation</div><div class="phase-wks">Weeks 1–3</div></div>
+              </div>
+              <div class="phase">
+                <div class="phase-bar" style="background:#C45836;"></div>
+                <div><div class="phase-name">Build power</div><div class="phase-wks">Weeks 4–6</div></div>
+              </div>
+              <div class="phase">
+                <div class="phase-bar" style="background:#DFA090;"></div>
+                <div><div class="phase-name">See it move</div><div class="phase-wks">Weeks 7–8</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="plan-sec">
+            <div class="sec-label">HOW WE TRAIN</div>
+            <div class="p-callout">
+              <div class="ctag">For dancers</div>
+              <div class="ctext">Strength and mobility trained together — not separate days. Your body needs both at once.</div>
+            </div>
+            <div class="stats-row">
+              <div class="stat-card"><div class="stat-lbl">Sessions</div><div class="stat-val">3×<span class="stat-unit">/wk</span></div></div>
+              <div class="stat-card"><div class="stat-lbl">Length</div><div class="stat-val">30<span class="stat-unit">m</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workout preview bottom sheet — slides up over the plan -->
+        <div class="workout-sheet" id="d3-sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-head">
+            <div class="sheet-eyebrow">YOUR FIRST WORKOUT</div>
+            <div class="sheet-title">Thursday — 28 minutes</div>
+            <div class="sheet-meta">Here's what we're starting with, and why.</div>
+          </div>
+          <div class="sheet-scroll">
+
+            <!-- Card 1: Terracotta -->
+            <div class="ex-vcard" id="ex1" style="background:#C45836;">
+              <div class="vc-blob" style="background:radial-gradient(ellipse at 40% 35%,rgba(255,220,190,0.45),rgba(255,160,100,0.2)); animation-delay:0s;"></div>
+              <div class="vc-num" style="color:rgba(255,255,255,0.12);">01</div>
+              <div class="vc-tag" style="background:rgba(255,255,255,0.18);color:white;">Power</div>
+              <div class="vc-name" style="color:white;">Alternating<br>Lunge Jump</div>
+              <div class="vc-why" style="color:rgba(255,255,255,0.6);">Explosive leg power dancers rely on</div>
+            </div>
+
+            <!-- Card 2: Dark -->
+            <div class="ex-vcard" id="ex2" style="background:#1A1A1A;">
+              <div class="vc-blob" style="background:radial-gradient(ellipse at 40% 35%,rgba(237,181,160,0.4),rgba(196,88,54,0.25)); animation-delay:-1.5s;"></div>
+              <div class="vc-num" style="color:rgba(255,255,255,0.08);">02</div>
+              <div class="vc-tag" style="background:rgba(196,88,54,0.25);color:#EDB5A0;">Mobility</div>
+              <div class="vc-name" style="color:white;">Active<br>Hang</div>
+              <div class="vc-why" style="color:rgba(255,255,255,0.45);">Opens your shoulders, improves overhead mobility</div>
+            </div>
+
+            <!-- Card 3: Peach -->
+            <div class="ex-vcard" id="ex3" style="background:#EDB5A0;">
+              <div class="vc-blob" style="background:radial-gradient(ellipse at 40% 35%,rgba(255,255,255,0.5),rgba(220,140,100,0.2)); animation-delay:-3s;"></div>
+              <div class="vc-num" style="color:rgba(26,26,26,0.1);">03</div>
+              <div class="vc-tag" style="background:rgba(26,26,26,0.1);color:#1A1A1A;">Warmup</div>
+              <div class="vc-name" style="color:#1A1A1A;">Arm<br>Swings</div>
+              <div class="vc-why" style="color:rgba(26,26,26,0.5);">Primes your rotational range before you need it</div>
+            </div>
+
+            <!-- Card 4: Cream -->
+            <div class="ex-vcard" id="ex4" style="background:#EDEDE5;">
+              <div class="vc-blob" style="background:radial-gradient(ellipse at 40% 35%,rgba(196,88,54,0.3),rgba(196,88,54,0.1)); animation-delay:-2s;"></div>
+              <div class="vc-num" style="color:rgba(26,26,26,0.08);">04</div>
+              <div class="vc-tag" style="background:rgba(196,88,54,0.12);color:#C45836;">Core</div>
+              <div class="vc-name" style="color:#1A1A1A;">Plank<br>Jacks</div>
+              <div class="vc-why" style="color:rgba(26,26,26,0.45);">Core stability under movement, not just at rest</div>
+            </div>
+
+          </div>
+          <div class="sheet-cta">
+            <div class="sheet-cta-btn" id="d3-cta">Start your free trial →</div>
+          </div>
+        </div>
+
+      </div>
+      <button class="replay-btn" onclick="replayDir3()">↺ Replay</button>
+    </div>
+
+    <div class="desc">
+      <h3>Direction 3 — Workout preview as a bottom sheet</h3>
+      <p>The plan screen shows the headline and 8-week arc. Then, automatically, a bottom sheet slides up — unavoidable, its own moment. The user doesn't find the workout preview. It finds her.</p>
+      <div class="callout-box">
+        <div class="label">Why a sheet, not a section</div>
+        Scrolling to find the preview buries the most compelling proof point. A sheet interrupts — in a good way. It demands the same attention as a notification or a coach tapping you on the shoulder.
+      </div>
+      <div class="callout-box">
+        <div class="label">The exercise tags</div>
+        Power · Mobility · Warmup · Core — these aren't just labels. They show the workout has shape and intention, not just a list of things to do. The tags also prime the user for the coaching language they'll hear once the workout starts.
+      </div>
+      <p>The CTA lives at the bottom of the sheet — "Start your free trial →" — so the decision happens immediately after the most compelling proof point, not after a screen of stats.</p>
+      <p class="note">The sheet could also be dismissible (swipe down to read more of the plan) — keeping it explorable without burying it.</p>
+    </div>
+  </div>
+
+  <!-- ==================== DIRECTION NEW ==================== -->
+  <div id="dirnew" class="direction">
+    <div>
+      <div class="phone">
+
+        <!-- Q1: Goals question -->
+        <div class="screen active" id="dn-q1">
+          <div class="q-screen">
+            <div class="q-top">
+              <span class="q-section-label">Goals</span>
+              <span class="q-pct">44%</span>
+            </div>
+            <div class="q-progress"><div class="q-progress-fill" style="width:44%"></div></div>
+            <div class="blob q-blob"></div>
+            <div class="q-heading">Y, what should we work towards?</div>
+            <div class="q-chips">
+              <div class="q-chip picked">Build strength</div>
+              <div class="q-chip">Lose weight</div>
+              <div class="q-chip">Feel better</div>
+              <div class="q-chip">More energy</div>
+              <div class="q-chip">Stay consistent</div>
+            </div>
+            <div class="q-continue">Continue</div>
+          </div>
+        </div>
+
+        <!-- INSIGHT 1: After goals answered -->
+        <div class="screen" id="dn-i1">
+          <div class="insight-screen">
+            <div class="insight-bg-blob"></div>
+            <div class="insight-bg-blob-2"></div>
+            <div class="insight-content">
+              <div class="insight-label" id="il1">Ray is learning about you</div>
+              <div class="insight-text" id="it1">You dance.<br>Strength is the goal.</div>
+              <div class="insight-tags" id="itags1">
+                <span class="i-tag new">Dance</span>
+                <span class="i-tag new">Strength</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2: Obstacles question -->
+        <div class="screen" id="dn-q2">
+          <div class="q-screen">
+            <div class="q-top">
+              <span class="q-section-label">Goals</span>
+              <span class="q-pct">52%</span>
+            </div>
+            <div class="q-progress"><div class="q-progress-fill" style="width:52%"></div></div>
+            <div class="blob q-blob"></div>
+            <div class="q-heading">What's gotten in the way before?</div>
+            <div class="q-chips">
+              <div class="q-chip picked">Consistency</div>
+              <div class="q-chip">Motivation</div>
+              <div class="q-chip">Not enough time</div>
+              <div class="q-chip">Injuries</div>
+              <div class="q-chip">Boredom</div>
+            </div>
+            <div class="q-continue">Continue</div>
+          </div>
+        </div>
+
+        <!-- INSIGHT 2: After obstacles answered -->
+        <div class="screen" id="dn-i2">
+          <div class="insight-screen">
+            <div class="insight-bg-blob"></div>
+            <div class="insight-bg-blob-2"></div>
+            <div class="insight-content">
+              <div class="insight-label" id="il2">Ray is learning about you</div>
+              <div class="insight-text" id="it2">Consistency has<br>been the hard part.<br>We'll fix that.</div>
+              <div class="insight-tags" id="itags2">
+                <span class="i-tag old">Dance</span>
+                <span class="i-tag old">Strength</span>
+                <span class="i-tag new">Consistency</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3: Schedule question -->
+        <div class="screen" id="dn-q3">
+          <div class="q-screen">
+            <div class="q-top">
+              <span class="q-section-label">Schedule</span>
+              <span class="q-pct">60%</span>
+            </div>
+            <div class="q-progress"><div class="q-progress-fill" style="width:60%"></div></div>
+            <div class="blob q-blob"></div>
+            <div class="q-heading">Which days would you like to work out?</div>
+            <div class="q-chips">
+              <div class="q-chip picked">Tue</div>
+              <div class="q-chip">Wed</div>
+              <div class="q-chip picked">Thu</div>
+              <div class="q-chip">Fri</div>
+              <div class="q-chip picked">Sat</div>
+              <div class="q-chip">Sun</div>
+            </div>
+            <div class="q-continue">Continue</div>
+          </div>
+        </div>
+
+      </div>
+      <button class="replay-btn" onclick="replayDirNew()">↺ Replay</button>
+    </div>
+
+    <div class="desc">
+      <h3>Direction New — Insight screens between questions</h3>
+      <p>Between certain questions, the onboarding briefly switches to a completely different visual register. Not another question — a full-screen moment where Ray surfaces what it's understood so far.</p>
+      <div class="callout-box">
+        <div class="label">Different visual language, intentionally</div>
+        The question screens are structured and functional. The insight screens are atmospheric — a large blob takes over most of the frame, text floats up from the bottom, and tags accumulate to show the profile Ray is building. The shift in register signals: something is happening here beyond form-filling.
+      </div>
+      <div class="callout-box">
+        <div class="label">The accumulating tags</div>
+        Each insight screen shows all the tags collected so far, with the newest one highlighted dark. By the third insight, the user can see Ray holding "Dance · Strength · Consistency · Tue/Thu/Sat" — a profile that's visibly theirs, not a template.
+      </div>
+      <p>This changes what the plan reveal feels like. The user has already watched Ray build her profile in real time. The plan isn't a surprise — it's a confirmation of something she saw forming.</p>
+      <p class="note">Works best at 2–3 moments in the flow, not after every question. The insight screen earns its place when the answer is genuinely consequential to the plan.</p>
+    </div>
+  </div>
+
+  <!-- ==================== DIRECTION WRAPPED ==================== -->
+  <div id="dirwrap" class="direction">
+    <div>
+      <div class="phone">
+
+        <!-- CARD 1: Dark — "Ray heard it all." -->
+        <div class="wc active" id="wc1" style="background:#1A1A1A;">
+          <div class="wc-blob" style="width:200px;height:200px;top:-40px;right:-40px;background:radial-gradient(ellipse at 40% 35%,rgba(237,181,160,0.35),rgba(196,88,54,0.18));"></div>
+          <div class="wc-dots" id="wdots1">
+            <div class="wc-dot done"></div>
+            <div class="wc-dot"></div>
+            <div class="wc-dot"></div>
+            <div class="wc-dot"></div>
+            <div class="wc-dot"></div>
+          </div>
+          <div class="wc-text">
+            <div class="wc-label" style="color:rgba(255,255,255,0.4);">YOU SHARED A LOT</div>
+            <div class="wc-headline" style="color:white;font-size:38px;">Ray heard<br>it all.</div>
+            <div class="wc-sub" style="color:rgba(255,255,255,0.5);">Here's what we're working with.</div>
+          </div>
+        </div>
+
+        <!-- CARD 2: Terracotta — "Dance." -->
+        <div class="wc" id="wc2" style="background:#C45836;">
+          <div class="wc-blob" style="width:160px;height:160px;bottom:120px;left:-30px;background:radial-gradient(ellipse at 50% 50%,rgba(255,220,200,0.3),rgba(255,180,140,0.15));"></div>
+          <div class="wc-blob" style="width:80px;height:80px;top:80px;right:20px;background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,0.15),transparent);animation-delay:-2s;"></div>
+          <div class="wc-dots" id="wdots2">
+            <div class="wc-dot done"></div>
+            <div class="wc-dot done"></div>
+            <div class="wc-dot"></div>
+            <div class="wc-dot"></div>
+            <div class="wc-dot"></div>
+          </div>
+          <div class="wc-text">
+            <div class="wc-label" style="color:rgba(255,255,255,0.55);">YOUR WHY</div>
+            <div class="wc-headline" style="color:white;">Dance.</div>
+            <div class="wc-sub" style="color:rgba(255,255,255,0.65);">We'll build strength that shows up when you move.</div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Cream — "3 days." -->
+        <div class="wc" id="wc3" style="background:#EDEDE5;">
+          <div class="wc-blob" style="width:220px;height:220px;top:-30px;left:-50px;background:radial-gradient(ellipse at 40% 35%,rgba(237,181,160,0.6),rgba(196,88,54,0.25));"></div>
+          <div class="wc-dots" id="wdots3">
+            <div class="wc-dot-dark wc-dot done"></div>
+            <div class="wc-dot-dark wc-dot done"></div>
+            <div class="wc-dot-dark wc-dot done"></div>
+            <div class="wc-dot-dark wc-dot"></div>
+            <div class="wc-dot-dark wc-dot"></div>
+          </div>
+          <div class="wc-text">
+            <div class="wc-label" style="color:rgba(26,26,26,0.4);">YOUR RHYTHM</div>
+            <div class="wc-headline" style="color:#1A1A1A;">3 days.</div>
+            <div class="wc-sub" style="color:rgba(26,26,26,0.5);">Leaving room for dancing, rest, and everything else.</div>
+          </div>
+        </div>
+
+        <!-- CARD 4: Dark — "Consistency." -->
+        <div class="wc" id="wc4" style="background:#1A1A1A;">
+          <div class="wc-blob" style="width:140px;height:140px;top:60px;right:-20px;background:radial-gradient(ellipse at 40% 35%,rgba(237,181,160,0.3),rgba(196,88,54,0.2));"></div>
+          <div class="wc-blob" style="width:90px;height:90px;top:180px;left:20px;background:radial-gradient(ellipse at 50% 50%,rgba(196,88,54,0.2),transparent);animation-delay:-3s;"></div>
+          <div class="wc-dots" id="wdots4">
+            <div class="wc-dot done"></div>
+            <div class="wc-dot done"></div>
+            <div class="wc-dot done"></div>
+            <div class="wc-dot done"></div>
+            <div class="wc-dot"></div>
+          </div>
+          <div class="wc-text">
+            <div class="wc-label" style="color:rgba(255,255,255,0.4);">YOUR CHALLENGE</div>
+            <div class="wc-headline" style="color:white;font-size:42px;">Consis-<br>tency.</div>
+            <div class="wc-sub" style="color:rgba(255,255,255,0.5);">That's the one we're solving together.</div>
+          </div>
+        </div>
+
+        <!-- CARD 5: Transition — "Your plan is ready." -->
+        <div class="wc" id="wc5" style="background:#1A1A1A;">
+          <div class="wc-blob" style="width:260px;height:260px;top:-60px;left:50%;transform:translateX(-50%);background:radial-gradient(ellipse at 40% 35%,rgba(237,181,160,0.4),rgba(196,88,54,0.22));"></div>
+          <div class="wc-dots" id="wdots5">
+            <div class="wc-dot done"></div>
+            <div class="wc-dot done"></div>
+            <div class="wc-dot done"></div>
+            <div class="wc-dot done"></div>
+            <div class="wc-dot done"></div>
+          </div>
+          <div class="wc-text">
+            <div class="wc-label" style="color:rgba(255,255,255,0.4);">READY</div>
+            <div class="wc-headline" style="color:white;font-size:36px;">Your plan<br>is ready.</div>
+            <div class="wc-sub" style="color:rgba(255,255,255,0.5);">Built for dance. Built for you.</div>
+          </div>
+        </div>
+
+        <!-- PLAN SCREEN — the payoff -->
+        <div class="wc plan-screen" id="wc-plan" style="overflow-y:auto; display:flex; flex-direction:column;">
+          <div class="plan-head">
+            <div class="plan-eyebrow">YOUR PLAN</div>
+            <div class="plan-title">Get stronger for dance, Y.</div>
+            <div class="plan-sub">Built around strength that transfers — balance, power, control. The kind that shows up when you move.</div>
+          </div>
+          <div class="plan-sec">
+            <div class="sec-label">FIRST 8 WEEKS</div>
+            <div class="phases">
+              <div class="phase"><div class="phase-bar" style="background:#EDB5A0;"></div><div><div class="phase-name">Build foundation</div><div class="phase-wks">Weeks 1–3</div></div></div>
+              <div class="phase"><div class="phase-bar" style="background:#C45836;"></div><div><div class="phase-name">Build power</div><div class="phase-wks">Weeks 4–6</div></div></div>
+              <div class="phase"><div class="phase-bar" style="background:#DFA090;"></div><div><div class="phase-name">See it move</div><div class="phase-wks">Weeks 7–8</div></div></div>
+            </div>
+          </div>
+          <div class="plan-sec">
+            <div class="sec-label">HOW WE TRAIN</div>
+            <div class="p-callout"><div class="ctag">For dancers</div><div class="ctext">Strength and mobility trained together — not separate days.</div></div>
+            <div class="stats-row">
+              <div class="stat-card"><div class="stat-lbl">Sessions</div><div class="stat-val">3×<span class="stat-unit">/wk</span></div></div>
+              <div class="stat-card"><div class="stat-lbl">Length</div><div class="stat-val">30<span class="stat-unit">m</span></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <button class="replay-btn" onclick="replayDirWrap()">↺ Replay</button>
+    </div>
+
+    <div class="desc">
+      <h3>Direction Wrapped — The Reveal</h3>
+      <p>After the last question, instead of jumping straight to the plan screen, Ray runs a Wrapped-style sequence — one full-screen card per key insight, each one a beat of recognition before the plan appears.</p>
+      <div class="callout-box">
+        <div class="label">The arc</div>
+        "Ray heard it all." → <strong>"Dance."</strong> → <strong>"3 days."</strong> → <strong>"Consistency."</strong> → "Your plan is ready." → Plan screen
+      </div>
+      <div class="callout-box">
+        <div class="label">Why this works</div>
+        Spotify Wrapped turns data into a personal mirror. Each card is a moment of recognition — "yes, that's me" — before the reveal. By the time the plan screen appears, it doesn't need to prove Ray understood her. She's already felt it.
+      </div>
+      <p>The plan screen is the payoff, not the performance. The Wrapped sequence does all the emotional lifting so the plan can be clean and confident without needing to over-explain.</p>
+      <p class="note">Unlike Spotify Wrapped (annual), this only happens once — at the start of the relationship. It has permission to be a full moment. The cards auto-advance, but could also be tap-to-advance.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ---- Tab switching ----
+  function switchTab(id, el) {
+    document.querySelectorAll('.direction').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+    if (id === 'dir1') replayDir1();
+    if (id === 'dir3') replayDir3();
+    if (id === 'dirnew') replayDirNew();
+    if (id === 'dirwrap') replayDirWrap();
+  }
+
+  // ---- Direction 1 ----
+  let d1t = null;
+
+  function replayDir1() {
+    if (d1t) clearTimeout(d1t);
+
+    // Reset screens
+    ['d1-equip','d1-reflect','d1-building','d1-plan'].forEach(id => {
+      document.getElementById(id).classList.remove('active');
+    });
+
+    // Reset reflection lines
+    ['rl1','rl2','rl3','rl4'].forEach(id => {
+      document.getElementById(id).classList.remove('show');
+    });
+    document.getElementById('rl-build').classList.remove('show');
+
+    // Show equipment screen
+    document.getElementById('d1-equip').classList.add('active');
+
+    d1t = setTimeout(() => {
+      // → Reflection
+      document.getElementById('d1-equip').classList.remove('active');
+      document.getElementById('d1-reflect').classList.add('active');
+
+      const lines = ['rl1','rl2','rl3','rl4'];
+      lines.forEach((id, i) => {
+        setTimeout(() => document.getElementById(id).classList.add('show'), 300 + i * 750);
+      });
+      setTimeout(() => document.getElementById('rl-build').classList.add('show'), 300 + 4 * 750);
+
+      // → Building
+      setTimeout(() => {
+        document.getElementById('d1-reflect').classList.remove('active');
+        document.getElementById('d1-building').classList.add('active');
+        animateDots();
+      }, 300 + 5 * 750 + 400);
+
+      // → Plan
+      setTimeout(() => {
+        document.getElementById('d1-building').classList.remove('active');
+        document.getElementById('d1-plan').classList.add('active');
+      }, 300 + 5 * 750 + 400 + 2200);
+
+    }, 1600);
+  }
+
+  let dotsInterval = null;
+  function animateDots() {
+    if (dotsInterval) clearInterval(dotsInterval);
+    const el = document.getElementById('build-text');
+    const base = 'Building your plan';
+    let n = 0;
+    dotsInterval = setInterval(() => {
+      n = (n + 1) % 4;
+      el.textContent = base + '.'.repeat(n);
+    }, 400);
+    setTimeout(() => clearInterval(dotsInterval), 2400);
+  }
+
+  // ---- Direction New ----
+  let dnt = [];
+  const dnScreens = ['dn-q1','dn-i1','dn-q2','dn-i2','dn-q3'];
+  const insightContentIds = [
+    ['il1','it1','itags1'],
+    ['il2','it2','itags2'],
+  ];
+
+  function showDnScreen(id) {
+    dnScreens.forEach(s => document.getElementById(s).classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function animateInsight(labelId, textId, tagsId) {
+    [labelId, textId, tagsId].forEach((id, i) => {
+      setTimeout(() => document.getElementById(id).classList.add('show'), i * 160);
+    });
+  }
+
+  function resetInsight(labelId, textId, tagsId) {
+    [labelId, textId, tagsId].forEach(id => document.getElementById(id).classList.remove('show'));
+  }
+
+  function replayDirNew() {
+    dnt.forEach(t => clearTimeout(t));
+    dnt = [];
+
+    insightContentIds.forEach(([l,t,g]) => resetInsight(l,t,g));
+    showDnScreen('dn-q1');
+
+    // Q1 → Insight 1
+    dnt.push(setTimeout(() => {
+      showDnScreen('dn-i1');
+      animateInsight('il1','it1','itags1');
+    }, 2000));
+
+    // Insight 1 → Q2
+    dnt.push(setTimeout(() => showDnScreen('dn-q2'), 4200));
+
+    // Q2 → Insight 2
+    dnt.push(setTimeout(() => {
+      showDnScreen('dn-i2');
+      animateInsight('il2','it2','itags2');
+    }, 6200));
+
+    // Insight 2 → Q3
+    dnt.push(setTimeout(() => showDnScreen('dn-q3'), 8400));
+  }
+
+  // ---- Direction 3 ----
+  let d3t = [];
+
+  function replayDir3() {
+    d3t.forEach(t => clearTimeout(t));
+    d3t = [];
+
+    const sheet = document.getElementById('d3-sheet');
+    sheet.classList.remove('open');
+    ['ex1','ex2','ex3','ex4'].forEach(id => document.getElementById(id).classList.remove('show'));
+    document.getElementById('d3-cta').classList.remove('show');
+
+    const t1 = setTimeout(() => {
+      sheet.classList.add('open');
+      ['ex1','ex2','ex3','ex4'].forEach((id, i) => {
+        const t = setTimeout(() => document.getElementById(id).classList.add('show'), 600 + i * 200);
+        d3t.push(t);
+      });
+      const t2 = setTimeout(() => document.getElementById('d3-cta').classList.add('show'), 600 + 4 * 200 + 150);
+      d3t.push(t2);
+    }, 1000);
+    d3t.push(t1);
+  }
+
+  // ---- Direction Wrapped ----
+  let dwt = [];
+  const wcScreens = ['wc1','wc2','wc3','wc4','wc5','wc-plan'];
+
+  function showWc(id) {
+    wcScreens.forEach(s => document.getElementById(s).classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function replayDirWrap() {
+    dwt.forEach(t => clearTimeout(t));
+    dwt = [];
+    showWc('wc1');
+
+    const sequence = ['wc1','wc2','wc3','wc4','wc5','wc-plan'];
+    const cardDuration = 2600;
+    sequence.forEach((id, i) => {
+      if (i === 0) return; // wc1 already shown
+      dwt.push(setTimeout(() => showWc(id), i * cardDuration));
+    });
+  }
+
+  // Autostart on load
+  window.addEventListener('load', () => {
+    setTimeout(replayDir1, 400);
+    setTimeout(replayDir3, 400);
+  });
+</script>
+</body>
+</html>
