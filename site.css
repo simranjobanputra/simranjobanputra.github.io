@@ -1981,3 +1981,5 @@ a.row:hover .rt { color: var(--accent); }
 .bub.me span { border-radius: 12px 12px 4px 12px; background: #1E1E1E; color: #fff; }
 @media (max-width: 1100px) { .st-pieces { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 680px) { .st-pieces { grid-template-columns: minmax(0, 1fr); } .pc { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: center; gap: 14px; padding: 10px 14px 10px 10px; } .pc-ui { height: 112px; padding: 10px; } .pc figcaption { padding: 0; } }
+/* Process decks: every card as tall as the tallest */
+@media (min-width: 561px) { .deck.same .reel-track { align-items: stretch; } .deck.same .deck-card { height: auto; } }
