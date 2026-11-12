@@ -1914,8 +1914,10 @@ a.row:hover .rt { color: var(--accent); }
 @media (max-width: 1100px) { .learn { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .learn { grid-template-columns: minmax(0, 1fr); } .learn-card h4 { min-height: 0; } }
 /* Header: more room above the brand now that the site sits directly under the browser bar */
-.head-row { padding-block: 22px 18px; }
-@media (max-width: 680px) { .head-row { padding-block: 16px 12px; } }
+.head-row { padding-block: 56px 20px; transition: padding .25s ease; }
+.site-head.is-scrolled .head-row { padding-block: 14px; }
+@media (max-width: 680px) { .head-row { padding-block: 32px 14px; } .site-head.is-scrolled .head-row { padding-block: 10px; } }
+@media (prefers-reduced-motion: reduce) { .head-row { transition: none; } }
 /* GLP-1: study timeline as phases plus one weekly rhythm */
 .study { padding: clamp(18px, 2.4vw, 30px); border-radius: 20px; background: var(--paper-2); display: grid; gap: clamp(16px, 2vw, 22px); }
 .st-k { font: 600 11.5px/1.2 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-2); }

@@ -41,6 +41,16 @@
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Header: roomy at the top of the page, compact once you scroll
+  (function () {
+    var head = document.querySelector('.site-head');
+    if (!head) return;
+    var on = false;
+    function sync() { var s = window.scrollY > 24; if (s !== on) { on = s; head.classList.toggle('is-scrolled', s); } }
+    window.addEventListener('scroll', sync, { passive: true });
+    sync();
+  })();
+
   // Looping tile videos: hold on the poster frame for people who prefer less motion
   document.querySelectorAll('video[autoplay]').forEach(function (v) {
     if (reduce) { v.removeAttribute('autoplay'); v.pause(); }
