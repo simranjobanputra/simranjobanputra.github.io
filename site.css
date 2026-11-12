@@ -1916,3 +1916,34 @@ a.row:hover .rt { color: var(--accent); }
 /* Header: more room above the brand now that the site sits directly under the browser bar */
 .head-row { padding-block: 22px 18px; }
 @media (max-width: 680px) { .head-row { padding-block: 16px 12px; } }
+/* GLP-1: study timeline as phases plus one weekly rhythm */
+.study { padding: clamp(18px, 2.4vw, 30px); border-radius: 20px; background: var(--paper-2); display: grid; gap: clamp(16px, 2vw, 22px); }
+.st-k { font: 600 11.5px/1.2 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-2); }
+.st-arc { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 4fr) minmax(0, .85fr); gap: 10px; }
+.st-ph { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; border-radius: 14px; background: var(--card); }
+.st-ph b { font: 400 19px/1.2 var(--display); color: var(--ink); }
+.st-ph span { font-size: 13.5px; line-height: 1.4; color: var(--ink-2); }
+.st-ph b.st-big { font-size: 40px; line-height: 1; color: var(--accent); }
+.st-weeks ol { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+.st-weeks li { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 2px 12px 0; border-left: 1px solid rgba(36,35,31,.12); font: 400 18px/1.2 var(--display); color: var(--ink); }
+.st-weeks li:first-child { padding-left: 0; border-left: 0; }
+.st-weeks small { font: 600 11px/1.2 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.st-weeks em { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font: 500 12.5px/1.2 var(--body); font-style: normal; color: var(--accent); }
+.study i { display: inline-block; flex: none; width: 12px; height: 12px; border-radius: 50%; }
+.study i.w { background: var(--ink); }
+.study i.c { background: #fff; box-shadow: inset 0 0 0 2px var(--ink); }
+.study i.t { width: 11px; height: 11px; background: #D35E45; }
+.study i.v { width: 12px; height: 12px; border-radius: 3px; background: var(--accent); }
+.st-every { display: grid; gap: 10px; }
+.st-rhythm { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.st-rhythm > div { display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: 14px; background: var(--card); }
+.st-ico { display: flex; gap: 6px; min-height: 13px; align-items: center; }
+.st-rhythm b { font-size: 14.5px; line-height: 1.35; font-weight: 500; color: var(--ink); }
+@media (max-width: 900px) {
+  .st-arc { grid-template-columns: minmax(0, 1fr); }
+  .st-ph b.st-big { font-size: 34px; }
+  .st-weeks ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 0; }
+  .st-weeks li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .st-rhythm { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .st-rhythm > div:last-child { grid-column: 1 / -1; }
+}
