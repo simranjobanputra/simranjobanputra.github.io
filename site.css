@@ -1985,13 +1985,30 @@ a.row:hover .rt { color: var(--accent); }
 @media (min-width: 561px) { .deck.same .reel-track { align-items: stretch; } .deck.same .deck-card { height: auto; } }
 .chapter .cap a.cap-link { font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 4px; }
 .chapter .cap a.cap-link:hover { color: var(--accent); }
-/* Ray hero: a speech bubble with Ray's orb that floats over the phone while Ray is talking */
-.vbub { position: absolute; z-index: 2; left: -46%; bottom: 17%; display: flex; align-items: flex-start; gap: 10px; width: 236px; padding: 12px 15px 13px 12px; border-radius: 18px 18px 18px 6px; background: var(--card); box-shadow: 0 14px 34px rgba(36,35,31,.16), 0 2px 6px rgba(36,35,31,.06); transition: opacity .35s ease, transform .35s ease; }
-.vbub.is-off { opacity: 0; transform: translateY(8px); }
-.vbub-orb { position: relative; flex: none; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #F08B74, #D9573F 70%); }
-.vbub-orb::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid rgba(217,87,63,.35); animation: vbubpulse 1.6s ease-out infinite; }
-@keyframes vbubpulse { 0% { transform: scale(.8); opacity: 1 } 100% { transform: scale(1.35); opacity: 0 } }
-.vbub-t { margin: 0; font: italic 400 17px/1.28 var(--display); color: var(--ink); text-wrap: balance; transition: opacity .2s; }
-.vbub.swap .vbub-t { opacity: 0; }
-@media (prefers-reduced-motion: reduce) { .vbub, .vbub-t { transition: none; } .vbub-orb::after { animation: none; } }
-@media (max-width: 820px) { .vbub { left: -62%; bottom: 10%; width: 200px; padding: 10px 12px 11px 10px; gap: 8px; } .vbub-t { font-size: 15px; } .vbub-orb { width: 18px; height: 18px; } }
+/* Saans (Ray's typeface) for the Ray voice pill. The font files live only in the private preview (trial license); elsewhere this falls back to Instrument Sans. */
+@font-face { font-family: "Saans"; src: url("assets/fonts/saans-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Saans"; src: url("assets/fonts/saans-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+/* Ray hero: no circle behind the phone; a Ray voice pill anchored to the phone's bottom edge.
+   While Ray talks the avatar is coral with bouncing bars and the line shows; otherwise it flips to the idle avatar and the line tucks away. */
+.voice-hero .op-hero-img::before { display: none; }
+.voice-hero .phone.hero { box-shadow: 0 30px 60px rgba(36,35,31,.18), 0 6px 16px rgba(36,35,31,.08); }
+.vpill { position: absolute; z-index: 2; left: 50%; bottom: -26px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 22px; background: #222221; box-shadow: 0 12px 28px rgba(20,20,20,.28); white-space: nowrap; }
+.vp-av { position: relative; flex: none; width: 40px; height: 40px; perspective: 200px; }
+.vp-face { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 2.5px; border-radius: 50%; backface-visibility: hidden; transition: transform .5s cubic-bezier(.3,.7,.3,1); }
+.vp-face.on { background: #D9573F; }
+.vp-face.idle { background: #0A0A0A; box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transform: rotateY(180deg); }
+.vp-face i { width: 2.5px; border-radius: 2px; background: #fff; height: 30%; }
+.vp-face i:nth-child(1), .vp-face i:nth-child(7) { height: 26%; } .vp-face i:nth-child(2), .vp-face i:nth-child(6) { height: 44%; } .vp-face i:nth-child(3), .vp-face i:nth-child(5) { height: 58%; } .vp-face i:nth-child(4) { height: 66%; }
+.vp-face.on i { animation: vpbounce .9s ease-in-out infinite; transform-origin: center; }
+.vp-face.on i:nth-child(2) { animation-delay: .12s } .vp-face.on i:nth-child(3) { animation-delay: .24s } .vp-face.on i:nth-child(4) { animation-delay: .06s } .vp-face.on i:nth-child(5) { animation-delay: .3s } .vp-face.on i:nth-child(6) { animation-delay: .18s } .vp-face.on i:nth-child(7) { animation-delay: .36s }
+@keyframes vpbounce { 0%, 100% { transform: scaleY(.55) } 50% { transform: scaleY(1.15) } }
+.vpill.is-off .vp-face.on { transform: rotateY(-180deg); }
+.vpill.is-off .vp-face.idle { transform: rotateY(0); }
+.vp-t { margin: 0; max-width: 236px; overflow: hidden; transition: max-width .45s ease, opacity .25s ease; }
+.vp-tx { display: block; width: 228px; padding-right: 8px; font: 500 14px/1.35 "Saans", var(--body); color: #F4F4E6; white-space: normal; text-wrap: balance; transition: opacity .2s ease; }
+.vpill.is-off .vp-t { max-width: 0; opacity: 0; }
+.vpill.swap .vp-tx { opacity: 0; }
+.vpill { transition: gap .45s ease; } .vpill.is-off { gap: 0; }
+@media (prefers-reduced-motion: reduce) { .vp-face, .vp-t, .vp-tx, .vpill { transition: none; } .vp-face.on i { animation: none; } }
+@media (min-width: 821px) { .op-hero.voice-hero .phone.hero { bottom: 22px; } }
+@media (max-width: 820px) { .voice-hero .op-hero-img { padding-bottom: 44px; } .vpill { bottom: -22px; gap: 10px; padding: 6px; } .vp-av { width: 34px; height: 34px; } .vp-t { max-width: 206px; } .vp-tx { width: 198px; font-size: 13px; } }

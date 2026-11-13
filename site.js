@@ -47,7 +47,7 @@
     var v = bub.closest('.phone') && bub.closest('.phone').querySelector('video'), cues = [], cur = -1;
     try { cues = JSON.parse(bub.getAttribute('data-cues')); } catch (e) { return; }
     if (!v || !cues.length) return;
-    var t = bub.querySelector('.vbub-t');
+    var t = bub.querySelector('.vp-tx, .vbub-t');
     function sync() {
       var now = v.currentTime, i = 0;
       for (var n = 0; n < cues.length; n++) { if (now >= cues[n][0] && now < cues[n][1]) { i = n; break; } }
