@@ -14,7 +14,7 @@
       if (!dl) return;
       ev.preventDefault();
       fetch(a.getAttribute('data-download')).then(function (r) { return r.blob(); }).then(function (blob) {
-        return dl.save({ filename: 'Simran-Jobanputra-Resume.pdf', data: blob });
+        return dl.save({ filename: 'Simran-Jobanputra-Kumar-Resume.pdf', data: blob });
       }).catch(function (e) { if (e && (e.code === 'declined' || e.code === 'rate_limited')) return; window.location.href = a.getAttribute('data-download'); });
     });
   });
