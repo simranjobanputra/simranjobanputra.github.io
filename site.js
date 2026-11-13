@@ -42,19 +42,20 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
-  // Hero caption: follows the walkthrough video and shows when Ray is speaking
-  document.querySelectorAll('[data-cues]').forEach(function (cap) {
-    var v = cap.parentElement.querySelector('video'), cues = [], cur = -1;
-    try { cues = JSON.parse(cap.getAttribute('data-cues')); } catch (e) { return; }
+  // Hero speech bubble: shows Ray's line while Ray is talking in the walkthrough, hides otherwise
+  document.querySelectorAll('[data-cues]').forEach(function (bub) {
+    var v = bub.closest('.phone') && bub.closest('.phone').querySelector('video'), cues = [], cur = -1;
+    try { cues = JSON.parse(bub.getAttribute('data-cues')); } catch (e) { return; }
     if (!v || !cues.length) return;
-    var k = cap.querySelector('.vcap-k'), t = cap.querySelector('.vcap-t');
+    var t = bub.querySelector('.vbub-t');
     function sync() {
       var now = v.currentTime, i = 0;
       for (var n = 0; n < cues.length; n++) { if (now >= cues[n][0] && now < cues[n][1]) { i = n; break; } }
       if (i === cur) return;
-      var c = cues[i], first = cur === -1; cur = i;
-      var apply = function () { cap.classList.toggle('is-voice', !!c[2]); k.textContent = c[3]; t.textContent = c[4]; cap.classList.remove('swap'); };
-      if (first || reduce) { apply(); } else { cap.classList.add('swap'); setTimeout(apply, 180); }
+      var c = cues[i], wasOff = cur === -1 || !cues[cur][2]; cur = i;
+      if (!c[2]) { bub.classList.add('is-off'); return; }
+      if (wasOff || reduce) { t.textContent = c[3]; bub.classList.remove('is-off'); return; }
+      bub.classList.add('swap'); setTimeout(function () { t.textContent = c[3]; bub.classList.remove('swap'); }, 200);
     }
     v.addEventListener('timeupdate', sync); v.addEventListener('seeked', sync); sync();
   });
