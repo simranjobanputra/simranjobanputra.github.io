@@ -42,6 +42,23 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
+  // Hero caption: follows the walkthrough video and shows when Ray is speaking
+  document.querySelectorAll('[data-cues]').forEach(function (cap) {
+    var v = cap.parentElement.querySelector('video'), cues = [], cur = -1;
+    try { cues = JSON.parse(cap.getAttribute('data-cues')); } catch (e) { return; }
+    if (!v || !cues.length) return;
+    var k = cap.querySelector('.vcap-k'), t = cap.querySelector('.vcap-t');
+    function sync() {
+      var now = v.currentTime, i = 0;
+      for (var n = 0; n < cues.length; n++) { if (now >= cues[n][0] && now < cues[n][1]) { i = n; break; } }
+      if (i === cur) return;
+      var c = cues[i], first = cur === -1; cur = i;
+      var apply = function () { cap.classList.toggle('is-voice', !!c[2]); k.textContent = c[3]; t.textContent = c[4]; cap.classList.remove('swap'); };
+      if (first || reduce) { apply(); } else { cap.classList.add('swap'); setTimeout(apply, 180); }
+    }
+    v.addEventListener('timeupdate', sync); v.addEventListener('seeked', sync); sync();
+  });
+
   // Looping tile videos: hold on the poster frame for people who prefer less motion
   document.querySelectorAll('video[autoplay]').forEach(function (v) {
     if (reduce) { v.removeAttribute('autoplay'); v.pause(); }
