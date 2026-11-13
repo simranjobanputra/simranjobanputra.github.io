@@ -2017,7 +2017,6 @@ a.row:hover .rt { color: var(--accent); }
 @media (max-width: 820px) { .voice-hero .op-hero-img { padding-bottom: 44px; } }
 @media (max-width: 820px) {
   /* Phones: the same pill as desktop, scaled with the phone so the proportions match */
-  .op-hero.voice-hero .op-hero-img { justify-content: flex-start; align-items: flex-start; }
   .op-hero.voice-hero .phone.hero { width: 176px; }
-  .op-hero.voice-hero .vpill { left: 0; bottom: -24px; transform: scale(.78); transform-origin: left bottom; }
+  .op-hero.voice-hero .vpill { left: 50%; bottom: -24px; transform: translateX(-50%) scale(.78); transform-origin: center bottom; }
 }
