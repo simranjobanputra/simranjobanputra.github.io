@@ -58,6 +58,7 @@
       bars.forEach(function (b, i) { var w = weight[i] || 0.7, h = 0.14 + 0.58 * w * loud * (0.45 + Math.random() * 0.55); b.style.transform = 'scaleY(' + Math.min(h / base[i], 2.4).toFixed(2) + ')'; });
     }
     function talk(on) {
+      return; // bar motion is handled in CSS (raytumble)
       if (reduce) return;
       if (on && !talkTimer) { talkTick(); talkTimer = setInterval(talkTick, 120); }
       if (!on && talkTimer) { clearInterval(talkTimer); talkTimer = 0; bars.forEach(function (b) { b.style.transform = ''; }); }
