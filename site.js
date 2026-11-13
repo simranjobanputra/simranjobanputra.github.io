@@ -48,11 +48,26 @@
     try { cues = JSON.parse(bub.getAttribute('data-cues')); } catch (e) { return; }
     if (!v || !cues.length) return;
     var t = bub.querySelector('.vp-tx, .vbub-t');
+    // Bars move like speech: uneven levels per bar, center bars louder, short gaps between words
+    var bars = Array.prototype.slice.call(bub.querySelectorAll('.vp-face.on i')), weight = [0.5, 0.72, 0.9, 1, 0.9, 0.72, 0.5], base = [0.26, 0.44, 0.58, 0.66, 0.58, 0.44, 0.26], talkTimer = 0, gap = 0;
+    function talkTick() {
+      if (gap > 0) { gap--; bars.forEach(function (b, i) { b.style.transform = 'scaleY(' + (0.14 / base[i]).toFixed(2) + ')'; }); return; }
+      if (Math.random() < 0.12) gap = 1 + Math.floor(Math.random() * 2);
+      var loud = 0.55 + Math.random() * 0.45;
+      // target height as a share of the avatar (center bars up to ~72%, outer ones lower), turned into a scale of each bar's resting height
+      bars.forEach(function (b, i) { var w = weight[i] || 0.7, h = 0.14 + 0.58 * w * loud * (0.45 + Math.random() * 0.55); b.style.transform = 'scaleY(' + Math.min(h / base[i], 2.4).toFixed(2) + ')'; });
+    }
+    function talk(on) {
+      if (reduce) return;
+      if (on && !talkTimer) { talkTick(); talkTimer = setInterval(talkTick, 120); }
+      if (!on && talkTimer) { clearInterval(talkTimer); talkTimer = 0; bars.forEach(function (b) { b.style.transform = ''; }); }
+    }
     function sync() {
       var now = v.currentTime, i = 0;
       for (var n = 0; n < cues.length; n++) { if (now >= cues[n][0] && now < cues[n][1]) { i = n; break; } }
       if (i === cur) return;
       var c = cues[i], wasOff = cur === -1 || !cues[cur][2]; cur = i;
+      talk(!!c[2]);
       if (!c[2]) { bub.classList.add('is-off'); return; }
       if (wasOff || reduce) { t.textContent = c[3]; bub.classList.remove('is-off'); return; }
       bub.classList.add('swap'); setTimeout(function () { t.textContent = c[3]; bub.classList.remove('swap'); }, 200);

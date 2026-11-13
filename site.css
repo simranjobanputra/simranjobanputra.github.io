@@ -1992,15 +1992,16 @@ a.row:hover .rt { color: var(--accent); }
    While Ray talks the avatar is coral with bouncing bars and the line shows; otherwise it flips to the idle avatar and the line tucks away. */
 .voice-hero .op-hero-img::before { display: none; }
 .voice-hero .phone.hero { box-shadow: 0 30px 60px rgba(36,35,31,.18), 0 6px 16px rgba(36,35,31,.08); }
-.vpill { position: absolute; z-index: 2; left: 50%; bottom: -26px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 22px; background: #222221; box-shadow: 0 12px 28px rgba(20,20,20,.28); white-space: nowrap; }
+.vpill { position: absolute; z-index: 2; left: 50%; bottom: -30px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; padding: 13px 20px 13px 13px; border-radius: 14px; background: #222221; box-shadow: 0 12px 28px rgba(20,20,20,.28); white-space: nowrap; }
 .vp-av { position: relative; flex: none; width: 40px; height: 40px; perspective: 200px; }
 .vp-face { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 2.5px; border-radius: 50%; backface-visibility: hidden; transition: transform .5s cubic-bezier(.3,.7,.3,1); }
 .vp-face.on { background: #D9573F; }
 .vp-face.idle { background: #0A0A0A; box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); transform: rotateY(180deg); }
 .vp-face i { width: 2.5px; border-radius: 2px; background: #fff; height: 30%; }
 .vp-face i:nth-child(1), .vp-face i:nth-child(7) { height: 26%; } .vp-face i:nth-child(2), .vp-face i:nth-child(6) { height: 44%; } .vp-face i:nth-child(3), .vp-face i:nth-child(5) { height: 58%; } .vp-face i:nth-child(4) { height: 66%; }
-.vp-face.on i { animation: vpbounce .9s ease-in-out infinite; transform-origin: center; }
-.vp-face.on i:nth-child(2) { animation-delay: .12s } .vp-face.on i:nth-child(3) { animation-delay: .24s } .vp-face.on i:nth-child(4) { animation-delay: .06s } .vp-face.on i:nth-child(5) { animation-delay: .3s } .vp-face.on i:nth-child(6) { animation-delay: .18s } .vp-face.on i:nth-child(7) { animation-delay: .36s }
+.vp-face.on i { transform-origin: center; transition: transform .12s ease-out; }
+.vp-face.on.css-talk i { animation: vpbounce .9s ease-in-out infinite; }
+.vp-face.on.css-talk i:nth-child(2) { animation-delay: .12s } .vp-face.on i:nth-child(3) { animation-delay: .24s } .vp-face.on i:nth-child(4) { animation-delay: .06s } .vp-face.on i:nth-child(5) { animation-delay: .3s } .vp-face.on i:nth-child(6) { animation-delay: .18s } .vp-face.on i:nth-child(7) { animation-delay: .36s }
 @keyframes vpbounce { 0%, 100% { transform: scaleY(.55) } 50% { transform: scaleY(1.15) } }
 .vpill.is-off .vp-face.on { transform: rotateY(-180deg); }
 .vpill.is-off .vp-face.idle { transform: rotateY(0); }
@@ -2008,7 +2009,7 @@ a.row:hover .rt { color: var(--accent); }
 .vp-tx { display: block; width: 228px; padding-right: 8px; font: 500 14px/1.35 "Saans", var(--body); color: #F4F4E6; white-space: normal; text-wrap: balance; transition: opacity .2s ease; }
 .vpill.is-off .vp-t { max-width: 0; opacity: 0; }
 .vpill.swap .vp-tx { opacity: 0; }
-.vpill { transition: gap .45s ease; } .vpill.is-off { gap: 0; }
+.vpill { transition: gap .45s ease, padding .45s ease; } .vpill.is-off { gap: 0; padding: 10px; }
 @media (prefers-reduced-motion: reduce) { .vp-face, .vp-t, .vp-tx, .vpill { transition: none; } .vp-face.on i { animation: none; } }
 @media (min-width: 821px) { .op-hero.voice-hero .phone.hero { bottom: 22px; } }
-@media (max-width: 820px) { .voice-hero .op-hero-img { padding-bottom: 44px; } .vpill { bottom: -22px; gap: 10px; padding: 6px; } .vp-av { width: 34px; height: 34px; } .vp-t { max-width: 206px; } .vp-tx { width: 198px; font-size: 13px; } }
+@media (max-width: 820px) { .voice-hero .op-hero-img { padding-bottom: 48px; } .vpill { bottom: -26px; gap: 11px; padding: 10px 15px 10px 10px; border-radius: 12px; } .vpill.is-off { padding: 8px; } .vp-av { width: 34px; height: 34px; } .vp-t { max-width: 206px; } .vp-tx { width: 198px; font-size: 13px; } }
